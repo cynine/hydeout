@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Flutter Widget
+title: Widget 知识点
 excerpt_separator: "<!--more-->"
 categories:
   - Flutter
@@ -17,6 +17,9 @@ last_modified_at: 2020-01-17T22:17:01-05:0
 - 什么是 Widget ?
 - 如何理解 Widget 、Element 和 RenderObject 这三个概念？它们之间是一一对应的吗？能否在 Android/iOS/Web 中找到对应的概念呢？
   
+在 iOS 中 UIView 相当于 Element, CALayer 相当于 RenderObject. UIKit 没有 Widget 这个概念。
+
+
 ### 概念
 
 **Flutter 的核心设计思想是"一切 Widget"**。
