@@ -273,7 +273,7 @@
 
   <div class="post-body">
     <h2 id="blocks-知识点">Blocks 知识点</h2>
-<p><img src="/assets/images/15835447426404.jpg" alt="img" /></p>
+<p><img src="assets/15835447426404.jpg" alt="img" /></p>
 
 <h2 id="前言">前言</h2>
 <ul>
@@ -365,19 +365,21 @@ e.g:
 ^{ return count + 1 };
 </code></pre></div></div>
 <h3 id="22-block-类型变量">2.2 Block 类型变量</h3>
+
 <p>Block 语法但从记述方式来看，除了没有名称和带有“\^”以外，其他的都与 C 语言函数定义相同。在定义 C 语言函数时，可以将定义函数的地址赋值给函数指针变量中。</p>
 
-<pre><code class="language-C">int func(int count)
-{
-    return count + 1;
-}
-int (*funcptr)(int) = &amp;func;
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">funcptr</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">func</span><span class="p">;</span>
+</code></pre></div></div>
+
 <p>在 Block 的语法下，可将 Block 语法赋值给声明为 Block 类型的变量中。即源代码中一旦使用 Block 语法就相当于生成了可赋值给 Block 类型变量的“值”。在 Blocks 中，“Block” 既指源代码中的 Block 语法，也指由 Block 语法所生成的值。
 声明 Block 类型变量：</p>
 
-<pre><code class="language-C">int (^blk)(int);
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">blk</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
+</code></pre></div></div>
 <p>与前面对比使用函数指针的源代码对比，声明 Block 类型变量仅仅是将声明函数指针类型变量的 “*” 变成了 “\^”。该 Block 类型变量的与一般的 C 语言变量完成相同，可做为以下用途使用:</p>
 <ul>
   <li>自动变量</li>
@@ -388,87 +390,89 @@ int (*funcptr)(int) = &amp;func;
 使用 Block 语法将 Block 赋值为 Block 类型变量:</li>
 </ul>
 
-<pre><code class="language-C">int (^blk)(int) = ^(int count) { return count + 1; };
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">blk</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
+</code></pre></div></div>
 <ul>
   <li>由 Block 类型变量向 Block 类型变量赋值：</li>
 </ul>
 
-<pre><code class="language-C">int (^blk1)(int) = blk;
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">blk1</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span> <span class="o">=</span> <span class="n">blk</span><span class="p">;</span>
 
-int (^blk2)(int);
-blk2 = blk1;
-</code></pre>
+<span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">blk2</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
+<span class="n">blk2</span> <span class="o">=</span> <span class="n">blk1</span><span class="p">;</span>
+</code></pre></div></div>
 <ul>
   <li>将 Block 类型变量作为函数参数使用：</li>
 </ul>
 
-<pre><code class="language-C">void func(int (^blk)(int) {}
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">blk</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span> <span class="p">{}</span>
+</code></pre></div></div>
 <ul>
   <li>将 Block 作为函数的返回值返回：</li>
 </ul>
 
-<pre><code class="language-C">int (^func())(int)
-{
-    return ^(int count){return count + 1;};
-}
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">func</span><span class="p">())(</span><span class="kt">int</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="o">^</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">){</span><span class="k">return</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;};</span>
+<span class="p">}</span>
+</code></pre></div></div>
 <ul>
   <li>使用 <code class="highlighter-rouge">typedef</code> 简化上述操作：</li>
 </ul>
 
-<pre><code class="language-C">typedef int (^blk_t)(int);
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">^</span><span class="n">blk_t</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
 
-/* 原来的记述方式 
+<span class="cm">/* 原来的记述方式 
 void func(int (^blk)(int))
-*/
-简化为：
-void func(blk_t blk) {}
+*/</span>
 
-/* 原来的记述方式
+<span class="err">简化为：</span>
+<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">blk_t</span> <span class="n">blk</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="cm">/* 原来的记述方式
 int (^func()(int))
-*/
-简化为：
-blk_t func()
-</code></pre>
+*/</span>
+
+<span class="err">简化为：</span>
+<span class="n">blk_t</span> <span class="n">func</span><span class="p">()</span>
+</code></pre></div></div>
 <p>将赋值给 Block 类型变量中的 Block 方法的调用与使用函数指针类型变量调用函数的方法几乎完全相同：</p>
 <ul>
   <li>调用函数指针类型变量:</li>
 </ul>
 
-<pre><code class="language-C">int result = (*funcptr)(10);
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">funcptr</span><span class="p">)(</span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div></div>
 <ul>
   <li>调用 Block 类型变量:</li>
 </ul>
 
-<pre><code class="language-C">int result = blk(10);
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">blk</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div></div>
 <p>Block 类型变量调用 Block 与 C 语言通常的函数调用没有区别。在函数参数重使用 Block 类型变量并在函数中执行 Block 的例子:</p>
 
-<pre><code class="language-C">int func(blk_t blk, int rate)
-{
-    return blk(rete);
-}
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">func</span><span class="p">(</span><span class="n">blk_t</span> <span class="n">blk</span><span class="p">,</span> <span class="kt">int</span> <span class="n">rate</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">blk</span><span class="p">(</span><span class="n">rete</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
 <p>在 Objective-C 中方法使用:</p>
 
-<pre><code class="language-Objective-c">- (int)methodUsingBlock:(blk_t)blk rete:(int)rete
-{
-    return blk(rete);
-}
-</code></pre>
+<div class="language-objectivec highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">methodUsingBlock</span><span class="p">:(</span><span class="n">blk_t</span><span class="p">)</span><span class="nv">blk</span> <span class="nf">rete</span><span class="p">:(</span><span class="kt">int</span><span class="p">)</span><span class="nv">rete</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">blk</span><span class="p">(</span><span class="n">rete</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
 <p>Block 类型变量可完全像通常的 C 语言变量一样使用，因此也可以使用之乡 Block 类型变量的指针，即 Block 的指针类型变量:</p>
 
-<pre><code class="language-C">typedef int (^blk_t)(int);
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">^</span><span class="n">blk_t</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
 
-blk_t blk = ^(int count){return count + 1; };
+<span class="n">blk_t</span> <span class="n">blk</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">){</span><span class="k">return</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
 
-blk_t *blkprt = &amp;blk;
+<span class="n">blk_t</span> <span class="o">*</span><span class="n">blkprt</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">blk</span><span class="p">;</span>
 
-(*blkptr)(10);
-</code></pre>
+<span class="p">(</span><span class="o">*</span><span class="n">blkptr</span><span class="p">)(</span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div></div>
 <h3 id="23-截获自动变量值">2.3 截获自动变量值</h3>
 <p>“带有自动变量值”在 Blocks 中表现为“截获自动变量值”。截获自动变量值的实例如下:</p>
 
@@ -494,16 +498,16 @@ blk_t *blkprt = &amp;blk;
 <h3 id="24-__block-说明符">2.4 __block 说明符</h3>
 <p>若想在 Block 语法的表达式中将赋给 Block 语法外声明的自动变量，需要在该自动变量上附加 <code class="highlighter-rouge">__block</code> 说明符。</p>
 
-<pre><code class="language-C">__block int val = 0;
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__block</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-void (^blk)(void) = ^{ val = 1; };
+<span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
 
-blk();
+<span class="n">blk</span><span class="p">();</span>
 
-printf("val = %d\n", val);
+<span class="n">printf</span><span class="p">(</span><span class="s">"val = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
 
-// val = 1
-</code></pre>
+<span class="c1">// val = 1</span>
+</code></pre></div></div>
 <p>使用附有 <code class="highlighter-rouge">__block</code> 说明符的自动变量可在 Block 中赋值，<strong>该变量称为 __block 变量</strong>。</p>
 <h2 id="3-blocks-的实现">3 Blocks 的实现</h2>
 <h3 id="31-block-的实质">3.1 Block 的实质</h3>
@@ -512,57 +516,57 @@ printf("val = %d\n", val);
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang -rewrite-objc 源代码文件名
 </code></pre></div></div>
 
-<pre><code class="language-C">int main(int argc, const char *argv[])
-{
-    void (^ blk)(void) = ^{ printf("Block\n"); };
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">^</span> <span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span> <span class="n">printf</span><span class="p">(</span><span class="s">"Block</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span> <span class="p">};</span>
 
-    blk();
+    <span class="n">blk</span><span class="p">();</span>
 
-    return 0;
-}
-</code></pre>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 <p>通过 clang 将上述代码转换成 C++ 代码得：</p>
 
-<pre><code class="language-C">struct __block_impl {
-  void *isa;
-  int Flags;
-  int Reserved;
-  void *FuncPtr;
-};
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">__block_impl</span> <span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">isa</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">Flags</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">Reserved</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">FuncPtr</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct __main_block_impl_0 {
-  struct __block_impl impl;
-  struct __main_block_desc_0* Desc;
-  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, int flags=0) {
-    impl.isa = &amp;_NSConcreteStackBlock;
-    impl.Flags = flags;
-    impl.FuncPtr = fp;
-    Desc = desc;
-  }
-};
+<span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="n">__block_impl</span> <span class="n">impl</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">__main_block_desc_0</span><span class="o">*</span> <span class="n">Desc</span><span class="p">;</span>
+  <span class="n">__main_block_impl_0</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">fp</span><span class="p">,</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="o">*</span><span class="n">desc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">isa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_NSConcreteStackBlock</span><span class="p">;</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">Flags</span> <span class="o">=</span> <span class="n">flags</span><span class="p">;</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">FuncPtr</span> <span class="o">=</span> <span class="n">fp</span><span class="p">;</span>
+    <span class="n">Desc</span> <span class="o">=</span> <span class="n">desc</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
 
-static void __main_block_func_0(struct __main_block_impl_0 *__cself) 
-{
-    printf("Block\n"); 
-}
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_func_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="o">*</span><span class="n">__cself</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Block</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span> 
+<span class="p">}</span>
 
-static struct __main_block_desc_0 {
-  size_t reserved;
-  size_t Block_size;
-} __main_block_desc_0_DATA = { 
-    0, 
-    sizeof(struct __main_block_impl_0)
-};
+<span class="k">static</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">reserved</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">Block_size</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">__main_block_desc_0_DATA</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="mi">0</span><span class="p">,</span> 
+    <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="p">)</span>
+<span class="p">};</span>
 
-int main(int argc, const char *argv[])
-{
-    void (* blk)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA));
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)())</span><span class="o">&amp;</span><span class="n">__main_block_impl_0</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">__main_block_func_0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__main_block_desc_0_DATA</span><span class="p">));</span>
 
-    ((void (*)(__block_impl *))((__block_impl *)blk)-&gt;FuncPtr)((__block_impl *)blk);
+    <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">))((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">FuncPtr</span><span class="p">)((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">);</span>
 
-    return 0;
-}
-</code></pre>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>对比最初的源代码中的 Block 语法：</p>
 
@@ -571,26 +575,26 @@ int main(int argc, const char *argv[])
 
 <p>转换为：</p>
 
-<pre><code class="language-C">static void __main_block_func_0(struct __main_block_impl_0 *__cself) 
-{
-    printf("Block\n"); 
-}
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_func_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="o">*</span><span class="n">__cself</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Block</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span> 
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>如转换的源代码所示，通过 Blocks 使用的匿名函数实际上被作为简单的 C 语言函数来处理。另外，根据 Block 语法所属的函数名（此处为main）和该 Block 语法在该函数出现的顺序值（此处为0）来经 clang 变换的函数命名。</p>
 
 <p><code class="highlighter-rouge">__cself</code> 相当于 C++ 实例方法中指向实例自身的变量 <code class="highlighter-rouge">this</code>，或是 Objective-C 实例方法中指向对象自身的变量 <code class="highlighter-rouge">self</code>, 即参数 <code class="highlighter-rouge">__cself</code> 为指向 Block 值的变量。<code class="highlighter-rouge">__cself</code> 声明如下：</p>
 
-<pre><code class="language-C">struct __main_block_impl_0 *__cself
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="o">*</span><span class="n">__cself</span>
+</code></pre></div></div>
 
 <p>与 C++ 的 this 和 Objective-C 的 self 相同， 参数 __cself 是 __main_block_impl_0 结构题的指针。该结构体声明如下：</p>
 
-<pre><code class="language-C">struct __main_block_impl_0 {
-  struct __block_impl impl; // 今后版本升级所需的区域以及函数指针
-  struct __main_block_desc_0* Desc; // 其结构为今后版本升级所需要区域和 Block 的大小
-};	
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="n">__block_impl</span> <span class="n">impl</span><span class="p">;</span> <span class="c1">// 今后版本升级所需的区域以及函数指针</span>
+  <span class="k">struct</span> <span class="n">__main_block_desc_0</span><span class="o">*</span> <span class="n">Desc</span><span class="p">;</span> <span class="c1">// 其结构为今后版本升级所需要区域和 Block 的大小</span>
+<span class="p">};</span>	
+</code></pre></div></div>
 
 <p><strong>__block_impl</strong> 结构体的声明：</p>
 
@@ -604,28 +608,28 @@ int main(int argc, const char *argv[])
 
 <p><strong>__main_block_desc_0</strong> 结构体声明：</p>
 
-<pre><code class="language-C">static struct __main_block_desc_0 {
-  size_t reserved;
-  size_t Block_size;
-}
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">reserved</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">Block_size</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>再看 <strong>__main_block_impl_0</strong> 结构的构造函数：</p>
 
-<pre><code class="language-C">__main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, int flags=0) {
-    impl.isa = &amp;_NSConcreteStackBlock; 
-    impl.Flags = flags;
-    impl.FuncPtr = fp;
-    Desc = desc;
-}
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__main_block_impl_0</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">fp</span><span class="p">,</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="o">*</span><span class="n">desc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">isa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_NSConcreteStackBlock</span><span class="p">;</span> 
+    <span class="n">impl</span><span class="p">.</span><span class="n">Flags</span> <span class="o">=</span> <span class="n">flags</span><span class="p">;</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">FuncPtr</span> <span class="o">=</span> <span class="n">fp</span><span class="p">;</span>
+    <span class="n">Desc</span> <span class="o">=</span> <span class="n">desc</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>该构造函数的调用：</p>
 
-<pre><code class="language-C">void (* blk)(void) = 
-  ((void (*)())&amp;__main_block_impl_0(
-     (void *)__main_block_func_0, &amp;__main_block_desc_0_DATA));
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> 
+  <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)())</span><span class="o">&amp;</span><span class="n">__main_block_impl_0</span><span class="p">(</span>
+     <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">__main_block_func_0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__main_block_desc_0_DATA</span><span class="p">));</span>
+</code></pre></div></div>
 
 <p>去掉强制转化部分，可得：</p>
 
@@ -644,49 +648,49 @@ int main(int argc, const char *argv[])
 
 <p>由 <code class="highlighter-rouge">__main_block_impl_0</code> 结构体源代码可得，该结构体的构造函数的构造参数为：</p>
 
-<pre><code class="language-C">__main_block_impl_0(__main_block_func_0, &amp;__main_block_desc_0_DATA);
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__main_block_impl_0</span><span class="p">(</span><span class="n">__main_block_func_0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__main_block_desc_0_DATA</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p>第一个参数是由 Block 语法转换的 C 语言函数指针。第二个参数是作为静态全局变量初始化的 <code class="highlighter-rouge">__main_block_desc_0</code> 结构体实例指针。以下是 <code class="highlighter-rouge">__main_block_desc_0</code>  结构体实例的初始化部分代码：</p>
 
-<pre><code class="language-C">static struct __main_block_desc_0  __main_block_desc_0_DATA = { 
-    0, 
-    sizeof(struct __main_block_impl_0)
-}
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span>  <span class="n">__main_block_desc_0_DATA</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="mi">0</span><span class="p">,</span> 
+    <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>由此可知，该源代码使用 Block， 即 <code class="highlighter-rouge">__main_block_impl_0</code> 结构体的实例的大小，进行初始化。</p>
 
 <p>栈上 <code class="highlighter-rouge">__main_block_impl_0</code> 结构体实例（即 Block）参数的初始化过程：</p>
 
-<pre><code class="language-C">// 展开 __main_block_impl_0 结构体的 __block_impl 结构体
-struct __main_block_impl_0 {
-  void *isa; 
-  int Flags;
-  int Reserved;
-  void *FuncPtr;
-  struct __main_block_desc_0* Desc; 
-};	
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 展开 __main_block_impl_0 结构体的 __block_impl 结构体</span>
+<span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">isa</span><span class="p">;</span> 
+  <span class="kt">int</span> <span class="n">Flags</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">Reserved</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">FuncPtr</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">__main_block_desc_0</span><span class="o">*</span> <span class="n">Desc</span><span class="p">;</span> 
+<span class="p">};</span>	
+</code></pre></div></div>
 
 <p>该构造体根据构造函数会像下面这样进行初始化：</p>
 
-<pre><code class="language-C">isa = &amp;_NSConcreteStackBlock; 
-Flags = 0;
-Reserved = 0;
-FuncPtr = __main_block_func_0;
-Desc = &amp;__main_block_desc_0_DATA;
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_NSConcreteStackBlock</span><span class="p">;</span> 
+<span class="n">Flags</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">Reserved</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">FuncPtr</span> <span class="o">=</span> <span class="n">__main_block_func_0</span><span class="p">;</span>
+<span class="n">Desc</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">__main_block_desc_0_DATA</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p>再看 Block 调用部分源代码：</p>
 
-<pre><code class="language-C">blk();
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">blk</span><span class="p">();</span>
+</code></pre></div></div>
 
 <p>这部分可转换为以下源代码：</p>
 
-<pre><code class="language-C">((void (*)(__block_impl *))((__block_impl *)blk)-&gt;FuncPtr)((__block_impl *)blk);
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">))((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">FuncPtr</span><span class="p">)((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p>去掉转换部分：</p>
 
@@ -704,83 +708,83 @@ Desc = &amp;__main_block_desc_0_DATA;
 
 <h3 id="32-截获自动变量值">3.2 截获自动变量值</h3>
 
-<pre><code class="language-objective-c">int main(int argc, const char * argv[]) {
-    @autoreleasepool {
+<div class="language-objectivec highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="err">@autoreleasepool</span> <span class="p">{</span>
         
-        int dmy = 256;
-        int val = 10;
-        const char *fmt = "val = %d\n";
+        <span class="kt">int</span> <span class="n">dmy</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span> <span class="o">=</span> <span class="s">"val = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
         
-        void (^blk)(void) = ^{printf(fmt, val);};
+        <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span><span class="n">printf</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="n">val</span><span class="p">);};</span>
         
-        blk();
+        <span class="n">blk</span><span class="p">();</span>
         
-    }
-    return 0;
-}
-</code></pre>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>通过 clang 转换可得：</p>
 
-<pre><code class="language-C">struct __main_block_impl_0 {
-  struct __block_impl impl;
-  struct __main_block_desc_0* Desc;
-  const char *fmt;
-  int val;
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="n">__block_impl</span> <span class="n">impl</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">__main_block_desc_0</span><span class="o">*</span> <span class="n">Desc</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
   
-  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, const char *_fmt, int _val, int flags=0) : fmt(_fmt), val(_val) {
-    impl.isa = &amp;_NSConcreteStackBlock;
-    impl.Flags = flags;
-    impl.FuncPtr = fp;
-    Desc = desc;
-  }
-};
+  <span class="n">__main_block_impl_0</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">fp</span><span class="p">,</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="o">*</span><span class="n">desc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">_fmt</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_val</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">fmt</span><span class="p">(</span><span class="n">_fmt</span><span class="p">),</span> <span class="n">val</span><span class="p">(</span><span class="n">_val</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">isa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_NSConcreteStackBlock</span><span class="p">;</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">Flags</span> <span class="o">=</span> <span class="n">flags</span><span class="p">;</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">FuncPtr</span> <span class="o">=</span> <span class="n">fp</span><span class="p">;</span>
+    <span class="n">Desc</span> <span class="o">=</span> <span class="n">desc</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
 
-static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  const char *fmt = __cself-&gt;fmt; // bound by copy
-  int val = __cself-&gt;val; // bound by copy
-printf(fmt, val);}
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_func_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="o">*</span><span class="n">__cself</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span> <span class="o">=</span> <span class="n">__cself</span><span class="o">-&gt;</span><span class="n">fmt</span><span class="p">;</span> <span class="c1">// bound by copy</span>
+  <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">__cself</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span> <span class="c1">// bound by copy</span>
+<span class="n">printf</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="n">val</span><span class="p">);}</span>
 
-static struct __main_block_desc_0 {
-  size_t reserved;
-  size_t Block_size;
-} __main_block_desc_0_DATA = { 0, sizeof(struct __main_block_impl_0)};
-int main(int argc, const char * argv[]) {
-    /* @autoreleasepool */ { __AtAutoreleasePool __autoreleasepool; 
+<span class="k">static</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">reserved</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">Block_size</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">__main_block_desc_0_DATA</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="p">)};</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="cm">/* @autoreleasepool */</span> <span class="p">{</span> <span class="n">__AtAutoreleasePool</span> <span class="n">__autoreleasepool</span><span class="p">;</span> 
 
-        int dmy = 256;
-        int val = 10;
-        const char *fmt = "val = %d\n";
+        <span class="kt">int</span> <span class="n">dmy</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span> <span class="o">=</span> <span class="s">"val = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 
-        void (*blk)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA, fmt, val));
+        <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)())</span><span class="o">&amp;</span><span class="n">__main_block_impl_0</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">__main_block_func_0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__main_block_desc_0_DATA</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">val</span><span class="p">));</span>
 
-        ((void (*)(__block_impl *))((__block_impl *)blk)-&gt;FuncPtr)((__block_impl *)blk);
+        <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">))((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">FuncPtr</span><span class="p">)((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">);</span>
 
-    }
-    return 0;
-}
-</code></pre>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>Block 语法表达式中使用的自动变量被作为成员变量追加到了 <code class="highlighter-rouge">__main_block_impl_0</code>结构体中。</p>
 
-<pre><code class="language-C">struct __main_block_impl_0 {
-  struct __block_impl impl;
-  struct __main_block_desc_0* Desc;
-  const char *fmt;
-  int val;
-};
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="n">__block_impl</span> <span class="n">impl</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">__main_block_desc_0</span><span class="o">*</span> <span class="n">Desc</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">__main_block_impl_0</code> 结构体内声明的成员变量类型与自动变量类型完全相同（只有在 Block 语法表达式中使用的自动变量才会被追加）。<strong>Block 的自动变量捕获只针对 Block 使用的自动变量</strong>。</p>
 
-<pre><code class="language-C">__main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, const char *_fmt, int _val, int flags=0) : fmt(_fmt), val(_val) { }
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__main_block_impl_0</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">fp</span><span class="p">,</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="o">*</span><span class="n">desc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">_fmt</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_val</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">fmt</span><span class="p">(</span><span class="n">_fmt</span><span class="p">),</span> <span class="n">val</span><span class="p">(</span><span class="n">_val</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
 
 <p>在初始化结构体时，根据传递给构造函数的参数对自动变量追加的成员变量进行初始化。以下通过构造函数调用确认其参数：</p>
 
-<pre><code class="language-C">void (*blk)(void) = 
-  ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA, fmt, val));
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> 
+  <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)())</span><span class="o">&amp;</span><span class="n">__main_block_impl_0</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">__main_block_func_0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__main_block_desc_0_DATA</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">val</span><span class="p">));</span>
+</code></pre></div></div>
 
 <p>使用执行 Block 语法时的自动变量 fmt 和 val 来初始化 <code class="highlighter-rouge">__main_block_impl_0</code> 结构体实例。即在该源代码中，<code class="highlighter-rouge">__main_block_impl_0</code> 结构体实例的初始化如下：</p>
 
@@ -801,12 +805,12 @@ val = 10;
 
 <p>该源代码可转换以下函数：</p>
 
-<pre><code class="language-C">static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  const char *fmt = __cself-&gt;fmt; // bound by copy
-  int val = __cself-&gt;val; // bound by copy
-	printf(fmt, val);
-}
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_func_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="o">*</span><span class="n">__cself</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span> <span class="o">=</span> <span class="n">__cself</span><span class="o">-&gt;</span><span class="n">fmt</span><span class="p">;</span> <span class="c1">// bound by copy</span>
+  <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">__cself</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span> <span class="c1">// bound by copy</span>
+	<span class="n">printf</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>在转换后的源代码中，截获到 <code class="highlighter-rouge">__main_block_impl_0</code> 结构体实例的成员变量上的自动变量，这些变量在 Block 语法表达式之前被声明定义。因此，原来的源代码表达式无需改动便可使用截获的自动变量值执行。</p>
 
@@ -824,87 +828,87 @@ val = 10;
   <li>全局变量</li>
 </ul>
 
-<pre><code class="language-objective-c">int global_val = 1;
-static int static_global_val = 2;
+<div class="language-objectivec highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">global_val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">static_global_val</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 
 
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="err">@autoreleasepool</span> <span class="p">{</span>
         
-        static int static_val = 3;
+        <span class="k">static</span> <span class="kt">int</span> <span class="n">static_val</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
         
-        void (^blk)(void) = ^{
-            global_val *= 1;
-            static_global_val *= 2;
-            static_val *= 3;
-        };
+        <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span>
+            <span class="n">global_val</span> <span class="o">*=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">static_global_val</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="n">static_val</span> <span class="o">*=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="p">};</span>
         
-        blk();
+        <span class="n">blk</span><span class="p">();</span>
         
-        printf("global_val=%d\n", global_val);
-        printf("static_global_val=%d\n", static_global_val);
-        printf("static_val=%d\n", static_val);
+        <span class="n">printf</span><span class="p">(</span><span class="s">"global_val=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">global_val</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"static_global_val=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">static_global_val</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"static_val=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">static_val</span><span class="p">);</span>
         
-    }
-    return 0;
-}
-</code></pre>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>该源代码转换后如下：</p>
 
-<pre><code class="language-C">int global_val = 1;
-static int static_global_val = 2;
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">global_val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">static_global_val</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 
-struct __main_block_impl_0 {
-  struct __block_impl impl;
-  struct __main_block_desc_0* Desc;
-  int *static_val;
-  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, int *_static_val, int flags=0) : static_val(_static_val) {
-    impl.isa = &amp;_NSConcreteStackBlock;
-    impl.Flags = flags;
-    impl.FuncPtr = fp;
-    Desc = desc;
-  }
-};
-static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  int *static_val = __cself-&gt;static_val; // bound by copy
+<span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="n">__block_impl</span> <span class="n">impl</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">__main_block_desc_0</span><span class="o">*</span> <span class="n">Desc</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="o">*</span><span class="n">static_val</span><span class="p">;</span>
+  <span class="n">__main_block_impl_0</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">fp</span><span class="p">,</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="o">*</span><span class="n">desc</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">_static_val</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">static_val</span><span class="p">(</span><span class="n">_static_val</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">isa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_NSConcreteStackBlock</span><span class="p">;</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">Flags</span> <span class="o">=</span> <span class="n">flags</span><span class="p">;</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">FuncPtr</span> <span class="o">=</span> <span class="n">fp</span><span class="p">;</span>
+    <span class="n">Desc</span> <span class="o">=</span> <span class="n">desc</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_func_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="o">*</span><span class="n">__cself</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="o">*</span><span class="n">static_val</span> <span class="o">=</span> <span class="n">__cself</span><span class="o">-&gt;</span><span class="n">static_val</span><span class="p">;</span> <span class="c1">// bound by copy</span>
 
-            global_val *= 1;
-            static_global_val *= 2;
-            (*static_val) *= 3;
-        }
+            <span class="n">global_val</span> <span class="o">*=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">static_global_val</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="p">(</span><span class="o">*</span><span class="n">static_val</span><span class="p">)</span> <span class="o">*=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="p">}</span>
 
-static struct __main_block_desc_0 {
-  size_t reserved;
-  size_t Block_size;
-} __main_block_desc_0_DATA = { 0, sizeof(struct __main_block_impl_0)};
-int main(int argc, const char * argv[]) {
-    /* @autoreleasepool */ { __AtAutoreleasePool __autoreleasepool; 
+<span class="k">static</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">reserved</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">Block_size</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">__main_block_desc_0_DATA</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="p">)};</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="cm">/* @autoreleasepool */</span> <span class="p">{</span> <span class="n">__AtAutoreleasePool</span> <span class="n">__autoreleasepool</span><span class="p">;</span> 
 
-        static int static_val = 3;
+        <span class="k">static</span> <span class="kt">int</span> <span class="n">static_val</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 
-        void (*blk)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA, &amp;static_val));
+        <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)())</span><span class="o">&amp;</span><span class="n">__main_block_impl_0</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">__main_block_func_0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__main_block_desc_0_DATA</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">static_val</span><span class="p">));</span>
 
-        ((void (*)(__block_impl *))((__block_impl *)blk)-&gt;FuncPtr)((__block_impl *)blk);
+        <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">))((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">FuncPtr</span><span class="p">)((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">);</span>
 
-        printf("global_val=%d\n", global_val);
-        printf("static_global_val=%d\n", static_global_val);
-        printf("static_val=%d\n", static_val);
+        <span class="n">printf</span><span class="p">(</span><span class="s">"global_val=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">global_val</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"static_global_val=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">static_global_val</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"static_val=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">static_val</span><span class="p">);</span>
 
-    }
-    return 0;
-}
-</code></pre>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>由此可见访问静态全局变量 <code class="highlighter-rouge">static_global_val</code> 和全局变量 <code class="highlighter-rouge">global_val</code> 与转换前完全相同。</p>
 
-<pre><code class="language-C">static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  int *static_val = __cself-&gt;static_val; // bound by copy
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_func_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="o">*</span><span class="n">__cself</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="o">*</span><span class="n">static_val</span> <span class="o">=</span> <span class="n">__cself</span><span class="o">-&gt;</span><span class="n">static_val</span><span class="p">;</span> <span class="c1">// bound by copy</span>
 
-						...
-            (*static_val) *= 3;
-        }
-</code></pre>
+						<span class="p">...</span>
+            <span class="p">(</span><span class="o">*</span><span class="n">static_val</span><span class="p">)</span> <span class="o">*=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></div></div>
 
 <p>对于静态变量 <code class="highlighter-rouge">static_val</code>, 使用静态变量 <code class="highlighter-rouge">static_val</code>的指针对其进行访问。将静态变量 <code class="highlighter-rouge">static_val</code> 的<strong>指针</strong>传递给 <code class="highlighter-rouge">__main_block_impl_0</code>结构体的构造函数并保存。</p>
 
@@ -926,106 +930,106 @@ int main(int argc, const char * argv[]) {
 
 <p>__block 使用如下：</p>
 
-<pre><code class="language-objective-c">int main(int argc, const char * argv[]) {
-    @autoreleasepool {
+<div class="language-objectivec highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="err">@autoreleasepool</span> <span class="p">{</span>
         
-        __block int val = 10;
-        void (^blk)(void) = ^{val = 1;};
+        <span class="n">__block</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span><span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;};</span>
         
-        blk();
+        <span class="n">blk</span><span class="p">();</span>
         
-        printf("val=%d", val);
+        <span class="n">printf</span><span class="p">(</span><span class="s">"val=%d"</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
         
-    }
-    return 0;
-}
-</code></pre>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>转换后如下：</p>
 
-<pre><code class="language-C++">struct __Block_byref_val_0 {
-  void *__isa;
-__Block_byref_val_0 *__forwarding;
- int __flags;
- int __size;
- int val;
-};
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">__Block_byref_val_0</span> <span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">__isa</span><span class="p">;</span>
+<span class="n">__Block_byref_val_0</span> <span class="o">*</span><span class="n">__forwarding</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">__flags</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">__size</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct __main_block_impl_0 {
-  struct __block_impl impl;
-  struct __main_block_desc_0* Desc;
-  __Block_byref_val_0 *val; // by ref
+<span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="n">__block_impl</span> <span class="n">impl</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">__main_block_desc_0</span><span class="o">*</span> <span class="n">Desc</span><span class="p">;</span>
+  <span class="n">__Block_byref_val_0</span> <span class="o">*</span><span class="n">val</span><span class="p">;</span> <span class="c1">// by ref</span>
   
-  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, __Block_byref_val_0 *_val, int flags=0) : val(_val-&gt;__forwarding) {
-    impl.isa = &amp;_NSConcreteStackBlock;
-    impl.Flags = flags;
-    impl.FuncPtr = fp;
-    Desc = desc;
-  }
-};
+  <span class="n">__main_block_impl_0</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">fp</span><span class="p">,</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="o">*</span><span class="n">desc</span><span class="p">,</span> <span class="n">__Block_byref_val_0</span> <span class="o">*</span><span class="n">_val</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">_val</span><span class="o">-&gt;</span><span class="n">__forwarding</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">isa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_NSConcreteStackBlock</span><span class="p">;</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">Flags</span> <span class="o">=</span> <span class="n">flags</span><span class="p">;</span>
+    <span class="n">impl</span><span class="p">.</span><span class="n">FuncPtr</span> <span class="o">=</span> <span class="n">fp</span><span class="p">;</span>
+    <span class="n">Desc</span> <span class="o">=</span> <span class="n">desc</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
 
-static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  __Block_byref_val_0 *val = __cself-&gt;val; // bound by ref
-(val-&gt;__forwarding-&gt;val) = 1;}
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_func_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="o">*</span><span class="n">__cself</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">__Block_byref_val_0</span> <span class="o">*</span><span class="n">val</span> <span class="o">=</span> <span class="n">__cself</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span> <span class="c1">// bound by ref</span>
+<span class="p">(</span><span class="n">val</span><span class="o">-&gt;</span><span class="n">__forwarding</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;}</span>
 
-static void __main_block_copy_0(struct __main_block_impl_0*dst, struct __main_block_impl_0*src) {_Block_object_assign((void*)&amp;dst-&gt;val, (void*)src-&gt;val, 8/*BLOCK_FIELD_IS_BYREF*/);}
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_copy_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="o">*</span><span class="n">src</span><span class="p">)</span> <span class="p">{</span><span class="n">_Block_object_assign</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dst</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">,</span> <span class="mi">8</span><span class="cm">/*BLOCK_FIELD_IS_BYREF*/</span><span class="p">);}</span>
 
-static void __main_block_dispose_0(struct __main_block_impl_0*src) {_Block_object_dispose((void*)src-&gt;val, 8/*BLOCK_FIELD_IS_BYREF*/);}
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_dispose_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="o">*</span><span class="n">src</span><span class="p">)</span> <span class="p">{</span><span class="n">_Block_object_dispose</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">src</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">,</span> <span class="mi">8</span><span class="cm">/*BLOCK_FIELD_IS_BYREF*/</span><span class="p">);}</span>
 
-static struct __main_block_desc_0 {
-  size_t reserved;
-  size_t Block_size;
-  void (*copy)(struct __main_block_impl_0*, struct __main_block_impl_0*);
-  void (*dispose)(struct __main_block_impl_0*);
-} __main_block_desc_0_DATA = { 0, sizeof(struct __main_block_impl_0), __main_block_copy_0, __main_block_dispose_0};
+<span class="k">static</span> <span class="k">struct</span> <span class="n">__main_block_desc_0</span> <span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">reserved</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">Block_size</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">copy</span><span class="p">)(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="o">*</span><span class="p">,</span> <span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="o">*</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">dispose</span><span class="p">)(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="o">*</span><span class="p">);</span>
+<span class="p">}</span> <span class="n">__main_block_desc_0_DATA</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span><span class="p">),</span> <span class="n">__main_block_copy_0</span><span class="p">,</span> <span class="n">__main_block_dispose_0</span><span class="p">};</span>
 
-int main(int argc, const char * argv[]) {
-    /* @autoreleasepool */ { __AtAutoreleasePool __autoreleasepool; 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="cm">/* @autoreleasepool */</span> <span class="p">{</span> <span class="n">__AtAutoreleasePool</span> <span class="n">__autoreleasepool</span><span class="p">;</span> 
 
-        //__attribute__((__blocks__(byref))) __Block_byref_val_0 val = {(void*)0,(__Block_byref_val_0 *)&amp;val, 0, sizeof(__Block_byref_val_0), 10};
-        __Block_byref_val_0 val = {
-          0,
-          &amp;val, 
-          0, 
-          sizeof(__Block_byref_val_0), 
-          10
-        };               
+        <span class="c1">//__attribute__((__blocks__(byref))) __Block_byref_val_0 val = {(void*)0,(__Block_byref_val_0 *)&amp;val, 0, sizeof(__Block_byref_val_0), 10};</span>
+        <span class="n">__Block_byref_val_0</span> <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="mi">0</span><span class="p">,</span>
+          <span class="o">&amp;</span><span class="n">val</span><span class="p">,</span> 
+          <span class="mi">0</span><span class="p">,</span> 
+          <span class="k">sizeof</span><span class="p">(</span><span class="n">__Block_byref_val_0</span><span class="p">),</span> 
+          <span class="mi">10</span>
+        <span class="p">};</span>               
                         
-        void (*blk)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA, (__Block_byref_val_0 *)&amp;val, 570425344));
+        <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">blk</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)())</span><span class="o">&amp;</span><span class="n">__main_block_impl_0</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">__main_block_func_0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__main_block_desc_0_DATA</span><span class="p">,</span> <span class="p">(</span><span class="n">__Block_byref_val_0</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">val</span><span class="p">,</span> <span class="mi">570425344</span><span class="p">));</span>
 
-        ((void (*)(__block_impl *))((__block_impl *)blk)-&gt;FuncPtr)((__block_impl *)blk);
+        <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">))((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">FuncPtr</span><span class="p">)((</span><span class="n">__block_impl</span> <span class="o">*</span><span class="p">)</span><span class="n">blk</span><span class="p">);</span>
 
-        printf("val=%d", (val.__forwarding-&gt;val));
+        <span class="n">printf</span><span class="p">(</span><span class="s">"val=%d"</span><span class="p">,</span> <span class="p">(</span><span class="n">val</span><span class="p">.</span><span class="n">__forwarding</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">));</span>
 
-    }
-    return 0;
-}
-</code></pre>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>由以上源码可得变量 val 上附加了 __block 说明符之后：</p>
 
-<pre><code class="language-C">__block int val = 10;
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__block</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 
-// 经过转换
-struct __Block_byref_val_0 val = {
-	0,
-  &amp;val,
-  0,
-  sizeof(__Block_byref_val_0),
-  10
-};
-</code></pre>
+<span class="c1">// 经过转换</span>
+<span class="k">struct</span> <span class="n">__Block_byref_val_0</span> <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="mi">0</span><span class="p">,</span>
+  <span class="o">&amp;</span><span class="n">val</span><span class="p">,</span>
+  <span class="mi">0</span><span class="p">,</span>
+  <span class="k">sizeof</span><span class="p">(</span><span class="n">__Block_byref_val_0</span><span class="p">),</span>
+  <span class="mi">10</span>
+<span class="p">};</span>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">__block</code> 变量变为了结构体实例。<code class="highlighter-rouge">__block</code> 变量也同 Block 一样变成 <code class="highlighter-rouge">__Block_byref_val_0</code> 结构体类型的自动变量，即栈上生成的 <code class="highlighter-rouge">__Block_byref_val_0</code> 结构体实例。该变量初始化为10，且这个值也出现在结构体实例的初始化中，这意味着该结构体持有相当于原自动变量的成员变量。该结构体声明如下：</p>
 
-<pre><code class="language-C">struct __Block_byref_val_0 {
- void *__isa;
- __Block_byref_val_0 *__forwarding;
- int __flags;
- int __size;
- int val;
-};
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">__Block_byref_val_0</span> <span class="p">{</span>
+ <span class="kt">void</span> <span class="o">*</span><span class="n">__isa</span><span class="p">;</span>
+ <span class="n">__Block_byref_val_0</span> <span class="o">*</span><span class="n">__forwarding</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">__flags</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">__size</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
 
 <p>如同初始化时的源代码，该结构体中最后的成员变量 val 是相当于原自动变量的成员变量，从它的名称也能看出这一点。</p>
 
@@ -1036,37 +1040,37 @@ struct __Block_byref_val_0 val = {
 
 <p>转换如下：</p>
 
-<pre><code class="language-C">static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  __Block_byref_val_0 *val = __cself-&gt;val; // bound by ref
-	(val-&gt;__forwarding-&gt;val) = 1;
-}
-</code></pre>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="kt">void</span> <span class="nf">__main_block_func_0</span><span class="p">(</span><span class="k">struct</span> <span class="n">__main_block_impl_0</span> <span class="o">*</span><span class="n">__cself</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">__Block_byref_val_0</span> <span class="o">*</span><span class="n">val</span> <span class="o">=</span> <span class="n">__cself</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span> <span class="c1">// bound by ref</span>
+	<span class="p">(</span><span class="n">val</span><span class="o">-&gt;</span><span class="n">__forwarding</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>刚刚在 Block 中向静态变量赋值时，使用了指向该静态变量的指针。而向 <code class="highlighter-rouge">__block</code> 变量赋值过程中，Block 的<code class="highlighter-rouge">__main_block_impl_0</code> 结构体实例持有指向 <code class="highlighter-rouge">__block</code> 变量 val 的 <code class="highlighter-rouge">__Block_byref_val_0</code> 结构体实例的指针。</p>
 
 <p><code class="highlighter-rouge">__Block_byref_val_0</code> 结构体实例的成员变量 <code class="highlighter-rouge">__forwarding</code> 持有指向该实例自身的指针。通过成员变量 <code class="highlighter-rouge">__forwarding</code> 访问成员变量 val（成员变量 val 时该实例自身持有的变量，它相当于原自动变量）。</p>
 
-<p><img src="/assets/images/image-20200307190818557.png" alt="img" /></p>
+<p><img src="assets/images/image-20200307190818557.png" alt="img" /></p>
 
 <p>另外, <code class="highlighter-rouge">__block</code> 变量的 <code class="highlighter-rouge">__Block_byref_val_0</code> 结构体并不在 Block 中的 <code class="highlighter-rouge">__main_block_impl_0</code> 结构体中，这样做是为了在多个 Block 中使用 <code class="highlighter-rouge">__Block</code>变量。</p>
 
-<pre><code class="language-C">__block int val = 10;
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__block</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
         
-void (^blk0)(void) = ^{val = 0;};
+<span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blk0</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span><span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;};</span>
 
-void (^blk1)(void) = ^{val = 1;};
-</code></pre>
+<span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">blk1</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">{</span><span class="n">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;};</span>
+</code></pre></div></div>
 
 <p>Block 类型变量 blk0 和 blk1 访问 <code class="highlighter-rouge">__block</code> 变量 val。这部分代码转换后如下：</p>
 
-<pre><code class="language-C">__Block_byref_val_0 val = {0, &amp;val, 0, sizeof(__Block_byref_val_0), 10};
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__Block_byref_val_0</span> <span class="n">val</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">__Block_byref_val_0</span><span class="p">),</span> <span class="mi">10</span><span class="p">};</span>
 
-blk0 = &amp;__main_block_impl_0(
-  __main_block_func_0, &amp;__main_block_desc_0_DATA, (__Block_byref_val_0 *)&amp;val, 570425344));
+<span class="n">blk0</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">__main_block_impl_0</span><span class="p">(</span>
+  <span class="n">__main_block_func_0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__main_block_desc_0_DATA</span><span class="p">,</span> <span class="p">(</span><span class="n">__Block_byref_val_0</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">val</span><span class="p">,</span> <span class="mi">570425344</span><span class="p">));</span>
 
-blk1 = &amp;__main_block_impl_1(
-  __main_block_func_1, &amp;__main_block_desc_1_DATA, (__Block_byref_val_0 *)&amp;val, 570425344));
-</code></pre>
+<span class="n">blk1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">__main_block_impl_1</span><span class="p">(</span>
+  <span class="n">__main_block_func_1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__main_block_desc_1_DATA</span><span class="p">,</span> <span class="p">(</span><span class="n">__Block_byref_val_0</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">val</span><span class="p">,</span> <span class="mi">570425344</span><span class="p">));</span>
+</code></pre></div></div>
 
 <p>两个 Block 都是用了 <code class="highlighter-rouge">__Block_byref_val_0</code> 结构体实例 val 的指针。这样一来就可以从多个 Block 中使用同一个 <code class="highlighter-rouge">__block</code> 变量。当然，反过来从一个 Block 中使用多个 <code class="highlighter-rouge">__block</code> 变量也是可以的。只要增加 Block 的结构体成员变量与构造函数的参数，便可对应使用多个 <code class="highlighter-rouge">__block</code> 变量。</p>
 
