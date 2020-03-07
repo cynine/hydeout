@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="https://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      PromiseKit 入门指南 &middot; Cynine
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/hydeout/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/hydeout/favicon.png" />
+<link rel="shortcut icon" href="/hydeout/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/hydeout/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <div class="site-title">
+      <a href="/hydeout/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Cynine
+      </a>
+    </div>
+    <p class="lead">Everything I do now, is in pursuit of more perfect.</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/hydeout/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/hydeout/about">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/hydeout/category/Developer">开发笔记</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/hydeout/category/Flutter">Flutter</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/hydeout/category/Python">Python</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/hydeout/category/iOS">iOS</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  
+
+  <nav id="sidebar-icon-links">
+  
+    <a id="github-link"
+       class="icon" title="Github Project" aria-label="Github Project"
+       href="https://github.com/Cynine/hydeout">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28" height="24" width="28"><path d="M12 2c6.625 0 12 5.375 12 12 0 5.297-3.437 9.797-8.203 11.391-0.609 0.109-0.828-0.266-0.828-0.578 0-0.391 0.016-1.687 0.016-3.297 0-1.125-0.375-1.844-0.812-2.219 2.672-0.297 5.484-1.313 5.484-5.922 0-1.313-0.469-2.375-1.234-3.219 0.125-0.313 0.531-1.531-0.125-3.187-1-0.313-3.297 1.234-3.297 1.234-0.953-0.266-1.984-0.406-3-0.406s-2.047 0.141-3 0.406c0 0-2.297-1.547-3.297-1.234-0.656 1.656-0.25 2.875-0.125 3.187-0.766 0.844-1.234 1.906-1.234 3.219 0 4.594 2.797 5.625 5.469 5.922-0.344 0.313-0.656 0.844-0.766 1.609-0.688 0.313-2.438 0.844-3.484-1-0.656-1.141-1.844-1.234-1.844-1.234-1.172-0.016-0.078 0.734-0.078 0.734 0.781 0.359 1.328 1.75 1.328 1.75 0.703 2.141 4.047 1.422 4.047 1.422 0 1 0.016 1.937 0.016 2.234 0 0.313-0.219 0.688-0.828 0.578-4.766-1.594-8.203-6.094-8.203-11.391 0-6.625 5.375-12 12-12zM4.547 19.234c0.031-0.063-0.016-0.141-0.109-0.187-0.094-0.031-0.172-0.016-0.203 0.031-0.031 0.063 0.016 0.141 0.109 0.187 0.078 0.047 0.172 0.031 0.203-0.031zM5.031 19.766c0.063-0.047 0.047-0.156-0.031-0.25-0.078-0.078-0.187-0.109-0.25-0.047-0.063 0.047-0.047 0.156 0.031 0.25 0.078 0.078 0.187 0.109 0.25 0.047zM5.5 20.469c0.078-0.063 0.078-0.187 0-0.297-0.063-0.109-0.187-0.156-0.266-0.094-0.078 0.047-0.078 0.172 0 0.281s0.203 0.156 0.266 0.109zM6.156 21.125c0.063-0.063 0.031-0.203-0.063-0.297-0.109-0.109-0.25-0.125-0.313-0.047-0.078 0.063-0.047 0.203 0.063 0.297 0.109 0.109 0.25 0.125 0.313 0.047zM7.047 21.516c0.031-0.094-0.063-0.203-0.203-0.25-0.125-0.031-0.266 0.016-0.297 0.109s0.063 0.203 0.203 0.234c0.125 0.047 0.266 0 0.297-0.094zM8.031 21.594c0-0.109-0.125-0.187-0.266-0.172-0.141 0-0.25 0.078-0.25 0.172 0 0.109 0.109 0.187 0.266 0.172 0.141 0 0.25-0.078 0.25-0.172zM8.937 21.438c-0.016-0.094-0.141-0.156-0.281-0.141-0.141 0.031-0.234 0.125-0.219 0.234 0.016 0.094 0.141 0.156 0.281 0.125s0.234-0.125 0.219-0.219z"></path>
+</svg>
+
+    </a>
+    <a id="github-download-link"
+       class="icon" title="Download" aria-label="Download"
+       href="https://github.com/Cynine/hydeout/archive/v4.0.2.zip">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/hydeout/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/hydeout/tags">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/hydeout/search">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+
+  <p>
+  &copy; 2020.
+  <a href="/hydeout/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">PromiseKit 入门指南</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">13 Jan 2020</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/hydeout/category/iOS">
+          iOS
+        </a>
+      
+    
+  </span>
+</div>
+
+
+  <div class="post-body">
+    <h1 id="开始使用">开始使用</h1>
+
+<h2 id="then-与-done">then 与 done</h2>
+
+<p>以下是一个经典的 promise 链:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstly</span> <span class="p">{</span>
+    <span class="nf">login</span><span class="p">()</span>
+<span class="p">}</span><span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="n">creds</span> <span class="k">in</span>
+    <span class="nf">fetch</span><span class="p">(</span><span class="nv">avatar</span><span class="p">:</span> <span class="n">creds</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span> <span class="p">{</span> <span class="n">image</span> <span class="k">in</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">imageView</span> <span class="o">=</span> <span class="n">image</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>如果这段代码使用闭包回调的话，会长成这个样子:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">login</span> <span class="p">{</span> <span class="n">creds</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">creds</span> <span class="o">=</span> <span class="n">creds</span> <span class="p">{</span>
+        <span class="nf">fetch</span><span class="p">(</span><span class="nv">avatar</span><span class="p">:</span> <span class="n">creds</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="p">{</span> <span class="n">image</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="n">image</span> <span class="p">{</span>
+                <span class="k">self</span><span class="o">.</span><span class="n">imageView</span> <span class="o">=</span> <span class="n">image</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">then</code> 函数是另外一个构建闭包回调的方法，但这种做法要比之前的 <code class="highlighter-rouge">completion handler</code> 方法好很多。它主要帮助我们更好的阅读这段代码。上面的 promise 链是非常容易阅读和理解的: 一个异步操作引出另一个异步操作。这段伪代码与程序代码非常接近，我们很容易理解这段 Swift 代码的当前含义。</p>
+
+<p><code class="highlighter-rouge">done</code> 函数和 <code class="highlighter-rouge">then</code> 含义是一样的，但是 <code class="highlighter-rouge">done</code> 没有返回一个承诺链。它常常被用于“成功链”的结尾。以上，我们可以看到在 <code class="highlighter-rouge">done</code> 函数中接受一个最终的 image 对象，并且被用来初始化我们的 UI 操作。</p>
+
+<p>让我们来对比以下两种方法:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">login</span><span class="p">()</span><span class="o">-&gt;</span><span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">Creds</span><span class="o">&gt;</span>
+
+<span class="c1">//对比：</span>
+
+<span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="nv">completion</span><span class="p">:(</span><span class="kt">Creds</span><span class="p">?,</span><span class="kt">Error</span><span class="p">?)</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)</span> <span class="c1">//额。这边有两个可选值</span>
+</code></pre></div></div>
+
+<p>这个两者区别在于使用了前者使用了<code class="highlighter-rouge">Promise</code>包装了Creds对象，你的方法返回了<code class="highlighter-rouge">Promise</code>对象而不是一个回调函数。每一个在响应链中的回调函数都会返回一个<code class="highlighter-rouge">Promise</code>对象。<code class="highlighter-rouge">Promise</code>对象中定义<code class="highlighter-rouge">then</code>方法，该方法在继续链之前等待前一个<code class="highlighter-rouge">Promise</code>任务的完成。<code class="highlighter-rouge">Promise</code>任务链会以程序化的方式解决问题，一次完成一个任务。</p>
+
+<p>一个 <code class="highlighter-rouge">Promise</code> 代表了一个未来的异步任务。它用泛型语法包装了一个对象的真实类型。比如，在以上的例子中， <code class="highlighter-rouge">login</code> 是一个方法返回了一个 <code class="highlighter-rouge">Promise</code> 对象，但是他的真实类型是一个 <code class="highlighter-rouge">Creds</code> 的实例。</p>
+
+<blockquote>
+  <p><em>注意</em>：<code class="highlighter-rouge">done</code>是在PromiseKit 5中新特性。我们之前定义了<code class="highlighter-rouge">then</code>的变体，没有要求你返回一个<code class="highlighter-rouge">Promise</code>对象。不幸的是，这种惯例经常混淆Swift使用者，并且导致了奇怪且难以调试的错误消息。它使用使用PromiseKit是一件痛苦的事情。<code class="highlighter-rouge">done</code>的引入让你在使用了promise链的时候，编译器可以很便捷的给类型提示信息。</p>
+</blockquote>
+
+<p>你可能会注意到与回调函数模式不同的是，promise 链模式似乎忽略了错误。不是这种情况！事实上，与此相反: promise 链模式的错误处理更加容易处理，更加难以忽略。</p>
+
+<h2 id="catch">catch</h2>
+
+<p>使用 promise 链模式，错误会沿着链逐级传递，确保你的应用程序代码正常健壮，代码逻辑清晰明确:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstly</span><span class="p">{</span>
+        <span class="nf">login</span><span class="p">()</span>
+<span class="p">}</span><span class="o">.</span><span class="n">then</span><span class="p">{</span> <span class="n">creds</span> <span class="k">in</span>
+        <span class="nf">featch</span><span class="p">(</span><span class="nv">avatar</span><span class="p">:</span><span class="n">creds</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span><span class="p">{</span> <span class="n">image</span> <span class="k">in</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">imageView</span> <span class="o">=</span> <span class="n">image</span>  
+<span class="p">}</span><span class="o">.</span><span class="k">catch</span><span class="p">{</span>
+        <span class="c1">//整个promise链的任何错误都归于此</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>如果你忘了”抓住”链条，Swift 会发出警告。我们稍后会详细讨论这个问题。</p>
+</blockquote>
+
+<p>每个 promise 链都表示单个异步任务。如果任务执行失败，其 promise 将被 rejected。包含被拒绝 promise 链将跳出所有后续的 <code class="highlighter-rouge">then</code> 任务。将执行下一个 <code class="highlighter-rouge">catch</code> 任务。（严格地说，所有后续 <code class="highlighter-rouge">catch</code> 回调都被执行。)</p>
+
+<p>为了好玩，让我们将此模式与闭包模式（ <code class="highlighter-rouge">comletion handler</code> 模式）进行比较:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//…</span>
+<span class="p">}</span>
+
+<span class="n">login</span> <span class="p">{</span> <span class="n">creds</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">creds</span> <span class="o">=</span> <span class="n">creds</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="n">error</span><span class="o">!</span><span class="p">)</span> <span class="p">}</span>
+    <span class="nf">fetch</span><span class="p">(</span><span class="nv">avatar</span><span class="p">:</span> <span class="n">creds</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="p">{</span> <span class="n">image</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+        <span class="k">guard</span> <span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="n">image</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="n">error</span><span class="o">!</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">imageView</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>这段代码使用 <code class="highlighter-rouge">guard</code> 和一个统一的错误处理，但是 promise 链的可读性说明了一切。</p>
+
+<h2 id="ensure">ensure</h2>
+
+<p>我们已经学会了异步组合。接下来让我们扩展更多的函数操作:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstly</span> <span class="p">{</span>
+    <span class="kt">UIApplication</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">isNetworkActivityIndicatorVisible</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="k">return</span> <span class="nf">login</span><span class="p">()</span>
+<span class="p">}</span><span class="o">.</span><span class="n">then</span> <span class="p">{</span>
+    <span class="nf">fetch</span><span class="p">(</span><span class="nv">avatar</span><span class="p">:</span> <span class="nv">$0</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">imageView</span> <span class="o">=</span> <span class="nv">$0</span>
+<span class="p">}</span><span class="o">.</span><span class="n">ensure</span> <span class="p">{</span>
+    <span class="kt">UIApplication</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">isNetworkActivityIndicatorVisible</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">}</span><span class="o">.</span><span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">//…</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>不论你的 promise 链输出是什么，成功或者失败，你的 <code class="highlighter-rouge">ensure</code> 回调永远会被执行的。</p>
+
+<p>我们将此模式与它的闭包回调模式进行对比：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">UIApplication</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">isNetworkActivityIndicatorVisible</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="kd">func</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">UIApplication</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">isNetworkActivityIndicatorVisible</span> <span class="o">=</span> <span class="kc">false</span>
+    <span class="c1">//…</span>
+<span class="p">}</span>
+
+<span class="n">login</span> <span class="p">{</span> <span class="n">creds</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">creds</span> <span class="o">=</span> <span class="n">creds</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="n">error</span><span class="o">!</span><span class="p">)</span> <span class="p">}</span>
+    <span class="nf">fetch</span><span class="p">(</span><span class="nv">avatar</span><span class="p">:</span> <span class="n">creds</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="p">{</span> <span class="n">image</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+        <span class="k">guard</span> <span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="n">image</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="n">error</span><span class="o">!</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">imageView</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+        <span class="kt">UIApplication</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">isNetworkActivityIndicatorVisible</span> <span class="o">=</span> <span class="kc">false</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>对于有些人来说，修改这段代码或者取消设置活动指示器，非常容易导致出现 bug。使用 promise 链模式，这类错误几乎不可能会发生：在不使用改模式的情况下，Swift 编译器不会给你编译提示。通过使用这种模式，您几乎不需要查看提交的代码。</p>
+
+<blockquote>
+  <p>提示：PromiseKit 为了这个函数可能在名字 <code class="highlighter-rouge">always</code> 和 <code class="highlighter-rouge">ensure</code> 之间反复无常地切换。 为此表示歉意。 我们做的很糟糕。</p>
+</blockquote>
+
+<p>你还可以使用 <code class="highlighter-rouge">finally</code> 作为一种 <code class="highlighter-rouge">ensure</code> , 用于终止 promise 链并且没有返回值:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">spinner</span><span class="p">(</span><span class="nv">visible</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+
+<span class="n">firstly</span> <span class="p">{</span>
+    <span class="nf">foo</span><span class="p">()</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span> <span class="p">{</span>
+    <span class="c1">//…</span>
+<span class="p">}</span><span class="o">.</span><span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">//…</span>
+<span class="p">}</span><span class="o">.</span><span class="n">finally</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">spinner</span><span class="p">(</span><span class="nv">visible</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="when">when</h2>
+
+<p>使用闭包回调模式，对对个异步操作做出反应不是写的很慢就是很难写出优雅的代码。</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">operation1</span> <span class="p">{</span> <span class="n">result1</span> <span class="k">in</span>
+    <span class="n">operation2</span> <span class="p">{</span> <span class="n">result2</span> <span class="k">in</span>
+        <span class="nf">finish</span><span class="p">(</span><span class="n">result1</span><span class="p">,</span> <span class="n">result2</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>这种编码方式使得代码目的不够清晰:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="nv">result1</span><span class="p">:</span> <span class="err">…</span><span class="o">!</span>
+<span class="k">var</span> <span class="nv">result2</span><span class="p">:</span> <span class="err">…</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">group</span> <span class="o">=</span> <span class="kt">DispatchGroup</span><span class="p">()</span>
+<span class="n">group</span><span class="o">.</span><span class="nf">enter</span><span class="p">()</span>
+<span class="n">operation1</span> <span class="p">{</span>
+    <span class="n">result1</span> <span class="o">=</span> <span class="nv">$0</span>
+    <span class="n">group</span><span class="o">.</span><span class="nf">leave</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="n">operation2</span> <span class="p">{</span>
+    <span class="n">result2</span> <span class="o">=</span> <span class="nv">$0</span>
+    <span class="n">group</span><span class="o">.</span><span class="nf">leave</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="n">group</span><span class="o">.</span><span class="nf">notify</span><span class="p">(</span><span class="nv">queue</span><span class="p">:</span> <span class="o">.</span><span class="n">main</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">finish</span><span class="p">(</span><span class="n">result1</span><span class="p">,</span> <span class="n">result2</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>使用 Promise 模式会变得更简单:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstly</span> <span class="p">{</span>
+    <span class="nf">when</span><span class="p">(</span><span class="nv">fulfilled</span><span class="p">:</span> <span class="nf">operation1</span><span class="p">(),</span> <span class="nf">operation2</span><span class="p">())</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span> <span class="p">{</span> <span class="n">result1</span><span class="p">,</span> <span class="n">result2</span> <span class="k">in</span>
+    <span class="c1">//…</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">when</code> 接受 <code class="highlighter-rouge">Promise</code> 对象，等待他们解决，并返回包含结果的 <code class="highlighter-rouge">Promise</code> 对象。</p>
+
+<p>与任何 <code class="highlighter-rouge">Promise</code> 链一样，如果任何 <code class="highlighter-rouge">Promise</code> 任务失败了，该链将调用下一个 <code class="highlighter-rouge">catch</code> 任务回调。</p>
+
+<h1 id="promisekit-扩展工具包">PromiseKit 扩展工具包</h1>
+
+<p>当我们制作 <code class="highlighter-rouge">PromiseKit</code> 工具包时，我们知道我们只想使用 <code class="highlighter-rouge">Promise</code> 来实现异步行为。因此，只要有可能，我们就会为苹果的API提供扩展，根据 <code class="highlighter-rouge">Promise</code> 重新构建 API。例如:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstly</span> <span class="p">{</span>
+    <span class="kt">CLLocationManager</span><span class="o">.</span><span class="nf">promise</span><span class="p">()</span>
+<span class="p">}</span><span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="n">location</span> <span class="k">in</span>
+    <span class="kt">CLGeocoder</span><span class="o">.</span><span class="nf">reverseGeocode</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span> <span class="p">{</span> <span class="n">placemarks</span> <span class="k">in</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">placemark</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"</span><span class="se">\(</span><span class="n">placemarks</span><span class="o">.</span><span class="n">first</span><span class="se">)</span><span class="s">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>要使用这些扩展，你需要安装如下 pod 库:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pod</span> <span class="s">"PromiseKit"</span>
+<span class="n">pod</span> <span class="s">"PromiseKit/CoreLocation"</span>
+<span class="n">pod</span> <span class="s">"PromiseKit/MapKit"</span>
+</code></pre></div></div>
+
+<p>所有这些扩展都可以在 PromiseKit 组织上找到。去那里看看有什么可用的，并阅读源代码和文档。每个文件和函数已被大量记录在案。</p>
+
+<blockquote>
+  <p>我们还为 <code class="highlighter-rouge">Alamofire</code> 等公共库提供扩展。</p>
+</blockquote>
+
+<h2 id="创建-promises">创建 Promises</h2>
+
+<p>标准扩展会让您走很长的路，但有时您仍然需要创建自己的<code class="highlighter-rouge">Promise</code>链。如果你使用额第三方库没有提供<code class="highlighter-rouge">Promise</code>扩展，或者你已经写好了自己的异步程序。不管怎样，添加<code class="highlighter-rouge">Promise</code>都很容易。如果你看一下标准扩展库，您将看到它使用下面描述的相同方法。</p>
+
+<p>假设我们有以下方法：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">fetch</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">String</span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>我们怎么才能转换成一个 <code class="highlighter-rouge">Promise</code> 呢，这很简单：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">fetch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">Promise</span> <span class="p">{</span> <span class="nf">fetch</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="nv">$0</span><span class="o">.</span><span class="n">resolve</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>您可能会发现扩展版本更具可读性：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">fetch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">Promise</span> <span class="p">{</span> <span class="n">seal</span> <span class="k">in</span>
+        <span class="n">fetch</span> <span class="p">{</span> <span class="n">result</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="n">seal</span><span class="o">.</span><span class="nf">resolve</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>这个<code class="highlighter-rouge">seal</code>对象是“Promise”初始化器提供的，用于定义很多方法来处理多重闭包回调的问题的。它甚至可以用来处理各种罕见的情况，从而使您很容易对现有代码库的添加<code class="highlighter-rouge">Promise</code>扩展。</p>
+
+<blockquote>
+  <p>注意：我们试图让它只做Promise(fetch)，但是我们不能让这个更简单的模式在不需要额外消除Swift编译器歧义的情况下普遍工作。对不起，我们尝试过但没有成功。</p>
+</blockquote>
+
+<blockquote>
+  <p>注意：在PromiseKit 4中，这个初始化器为闭包提供了两个参数: <code class="highlighter-rouge">fulfill</code> 和 <code class="highlighter-rouge">reject</code>。PromiseKit 5和6为您提供了一个对象，该对象具有 <code class="highlighter-rouge">fulfill</code> 和 <code class="highlighter-rouge">reject</code> 方法，但也有方法解析的许多变体。通常，您只需传递要解析的回调函数参数给 <code class="highlighter-rouge">resolve</code>，并让Swift找出应用于特定情况的变体(如上面的示例所示)。</p>
+</blockquote>
+
+<blockquote>
+  <p>注意： <code class="highlighter-rouge">Guarantee</code> (下面)是一个稍微不同的初始化器(因为它们不能出错)，所以初始化器闭包的参数只是一个闭包。不是 <code class="highlighter-rouge">Resolver</code> 对象。因此，应该 <code class="highlighter-rouge">seal(value)</code> 而不是 <code class="highlighter-rouge">seal.fulfill(value)</code>。这是因为没有什么变化在 <code class="highlighter-rouge">Guarantee</code> 中是未知的，它们只能 <code class="highlighter-rouge">fulfill</code>。</p>
+</blockquote>
+
+<h2 id="guarantee">Guarantee<T></T></h2>
+
+<p>从 PromiseKit 5 开始，我们就提供了 <code class="highlighter-rouge">Guarantee</code> 作为 <code class="highlighter-rouge">Promise</code> 的补充类。我们这样做是为了补充 Swift 强大的错误处理系统。</p>
+
+<p><code class="highlighter-rouge">Guarantee</code> 永远不会失败，所以它们不能被 <code class="highlighter-rouge">reject</code> 。一个很好的例子是 <code class="highlighter-rouge">after</code> :</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstly</span> <span class="p">{</span>
+    <span class="nf">after</span><span class="p">(</span><span class="nv">seconds</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span> <span class="p">{</span>
+    <span class="c1">// 没有办法添加“catch”，因为after不能失败。</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>如果你不终止一个常规的<code class="highlighter-rouge">Promise</code>链，Swift会对你做出编译警告。（不是一个<code class="highlighter-rouge">Guarantee</code>链）。您应该通过提供一个<code class="highlighter-rouge">catch</code>或一个<code class="highlighter-rouge">return</code>来消除这个警告。(在后一种情况下，你可以获得得到的promise链。)</p>
+
+<p>尽可能使用<code class="highlighter-rouge">Guarantee</code>，以便代码在需要的地方有错误处理，在不需要的地方没有错误处理。</p>
+
+<p>一般来说，您应该能够交替使用<code class="highlighter-rouge">Guarantee</code>和<code class="highlighter-rouge">Promise</code>，我们已经尽了最大的努力来确保这一点，所以如果您发现任何问题请及时给我们提issue。</p>
+
+<p>如果您正在创建自己的<code class="highlighter-rouge">Guarantee</code>，那么语法将比<code class="highlighter-rouge">Promise</code>更简单</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">fetch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">Guarantee</span> <span class="p">{</span> <span class="n">seal</span> <span class="k">in</span>
+        <span class="n">fetch</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+            <span class="nf">seal</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>可以归结为：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">fetch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">Guarantee</span><span class="p">(</span><span class="nv">resolver</span><span class="p">:</span> <span class="n">fetch</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="map-compactmap-等等">map, compactMap 等等</h2>
+
+<p><code class="highlighter-rouge">then</code>向您提供前一个承诺的结果，并要求您返回另一个承诺。<code class="highlighter-rouge">map</code>提供了前面承诺的结果，并要求您返回一个引用类型或值类型。<code class="highlighter-rouge">compactMap</code>提供了前面承诺的结果，并要求您返回一个可选的。如果返回nil，则该链将会返回<code class="highlighter-rouge">PMKError.compactMap</code>错误。</p>
+
+<blockquote>
+  <p>理由：在PromiseKit 4之前， <code class="highlighter-rouge">then</code> 会处理所有这些情况，这是非常糟糕的设计。我们希望这些痛苦会随着新版本的 Swift 而逐步消失。然而，很明显，各种各样的痛点都会存在。事实上，作为库的作者，我们应该在API的命名级别消除歧义。因此，我们将当时的三种主要类型分为 <code class="highlighter-rouge">then</code>、 <code class="highlighter-rouge">map</code>和 <code class="highlighter-rouge">done</code>。在使用了这些新函数之后，我们意识到这在实践中要好得多，所以我们也添加了 <code class="highlighter-rouge">compactMap</code>(以 <code class="highlighter-rouge">Optional.compactMap</code>为模型)。</p>
+</blockquote>
+
+<p><code class="highlighter-rouge">compactMap</code>有助于快速组合承诺链。例如:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">firstly</span> <span class="p">{</span>
+    <span class="kt">URLSession</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="o">.</span><span class="n">promise</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="n">rq</span><span class="p">)</span>
+<span class="p">}</span><span class="o">.</span><span class="n">compactMap</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">jsonObject</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="k">as?</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span> <span class="p">{</span> <span class="n">arrayOfStrings</span> <span class="k">in</span>
+    <span class="c1">//…</span>
+<span class="p">}</span><span class="o">.</span><span class="k">catch</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="c1">// Foundation.JSONError if JSON was badly formed</span>
+    <span class="c1">// PMKError.compactMap if JSON was of different type</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>提示:我们还为序列提供了您期望的大多数函数方法，例如 <code class="highlighter-rouge">map</code>、 <code class="highlighter-rouge">thenMap</code>、 <code class="highlighter-rouge">compactMapValues</code>、 <code class="highlighter-rouge">firstValue</code>等。</p>
+</blockquote>
+
+<h2 id="get">get</h2>
+
+<p>我们提供了 <code class="highlighter-rouge">get</code> 函数，类似 <code class="highlighter-rouge">done</code>, 主要用于获取返回值。</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstly</span> <span class="p">{</span>
+    <span class="nf">foo</span><span class="p">()</span>
+<span class="p">}</span><span class="o">.</span><span class="k">get</span> <span class="p">{</span> <span class="n">foo</span> <span class="k">in</span>
+    <span class="c1">//…</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span> <span class="p">{</span> <span class="n">foo</span> <span class="k">in</span>
+    <span class="c1">// same foo!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="tap">tap</h2>
+
+<p>我们提供 <code class="highlighter-rouge">tap</code> 用于 debug。它与 <code class="highlighter-rouge">get</code> 类似，但是提供了 <code class="highlighter-rouge">Promise</code> 的 <code class="highlighter-rouge">Result&lt;T&gt;</code>，因此您可以检查此时promise链中的值，而不会产生任何副作用:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstly</span> <span class="p">{</span>
+    <span class="nf">foo</span><span class="p">()</span>
+<span class="p">}</span><span class="o">.</span><span class="n">tap</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span>
+<span class="p">}</span><span class="o">.</span><span class="n">done</span> <span class="p">{</span>
+    <span class="c1">//…</span>
+<span class="p">}</span><span class="o">.</span><span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">//…</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h1 id="补充">补充</h1>
+
+<h2 id="firstly">firstly</h2>
+
+<p>我们在这一页上已经使用 <code class="highlighter-rouge">firstly</code> 函数好几次了，但是它到底是什么呢?事实上，它只是个语法糖。您并不真正需要它，但它有助于使您的 promise 链更具可读性。</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstly</span> <span class="p">{</span>
+    <span class="nf">login</span><span class="p">()</span>
+<span class="p">}</span><span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="n">creds</span> <span class="k">in</span>
+    <span class="c1">//…</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>也可以这样做:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">login</span><span class="p">()</span><span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="n">creds</span> <span class="k">in</span> 
+		<span class="c1">//...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>这里有一个关键的理解:login()函数返回一个<code class="highlighter-rouge">Promise</code>，所有<code class="highlighter-rouge">Promise</code>都有一个<code class="highlighter-rouge">then</code>函数。<code class="highlighter-rouge">firstly</code>返回一个<code class="highlighter-rouge">Promise</code>，然后<code class="highlighter-rouge">then</code>也返回一个<code class="highlighter-rouge">Promise</code>！但是不要太担心这些细节。从学习这种模式开始。然后，当您准备好前进时，继续学习底层架构。</p>
+
+<h2 id="when的变体">when的变体</h2>
+
+<p><code class="highlighter-rouge">when</code>是Promisekit中很有用的几个函数之一，因此我们提供了几个变体。</p>
+
+<ul>
+  <li>默认的<code class="highlighter-rouge">when</code>是<code class="highlighter-rouge">when(fulfilled:)</code>，您通常应该使用它。这种变体等待他所有承诺组件完成，但如果有任何一个承诺失败了，<code class="highlighter-rouge">when</code>也失败，因此promise链将会被“拒绝”继续执行。需要注意的是，所有的promise都在<code class="highlighter-rouge">when</code>中继续执行。promise无法控制它们所代表的任务。promise只是任务的分装。</li>
+  <li><code class="highlighter-rouge">when(resolved:)</code> 将会继续等待，即使它的一个或多个承诺组件失败了。when的这种变体产生的值是一个Result<T>的数组。因此，该变体要求其所有组件承诺具有相同的泛型类型。有关此限制，请参阅我们的高级模式指南。</T></li>
+  <li><code class="highlighter-rouge">race</code>变体允许您竞逐多个承诺。无论谁先完成都是结果。有关典型用法，请参阅高级模式指南。</li>
+</ul>
+
+<h1 id="swift-闭包的用法">Swift 闭包的用法</h1>
+
+<p>Swift自动推断单行闭包的返回和返回类型。以下两种形式是相同的:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">foo</span><span class="o">.</span><span class="n">then</span> <span class="p">{</span>
+    <span class="nf">bar</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// is the same as:</span>
+
+<span class="n">foo</span><span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="n">baz</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="nf">bar</span><span class="p">(</span><span class="n">baz</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>我们的文档经常为了清晰而省略返回值。</p>
+
+<p>然而，这种简写既是福也是祸。您可能会发现，Swift编译器经常无法正确推断返回类型。如果您需要进一步的帮助，请参阅我们的故障排除指南。</p>
+
+<blockquote>
+  <p>PromiseKit 5 中添加 <code class="highlighter-rouge">done</code>函数，我们成功地避免了在使用 PromiseKit 和 Swift 过程中的许多常见痛点。</p>
+</blockquote>
+
+<h1 id="延伸阅读">延伸阅读</h1>
+
+<p>以上信息是在使用PromiseKit中的90%了。我们强烈建议阅读<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fmxcl.dev%2FPromiseKit%2Freference%2Fv6%2FClasses%2FPromise.html">API指南</a>。有许多简短的函数可能对您有帮助，上面所有的内容在源代码的中的概述都更加全面。</p>
+
+<p>在Xcode中编码时，单击PromiseKit函数来访问该文档。</p>
+
+<p>这里是一些最近的文章，文档基于PromiseKit 5+:</p>
+
+<ul>
+  <li><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fagostini.tech%2F2018%2F10%2F08%2Fusing-promisekit">Using Promises - Agostini.tech</a></li>
+</ul>
+
+<p>小心一些网上的参考文章，他们中的许多人提到PromiseKit版本都小于5，这里面有些API是不相同的(抱歉，但Swift多年来已经改变了很多，因此我们也不得不这么做)。</p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/hydeout/tags#ios">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">iOS</span>
+    </a>
+  
+    
+    <a href="/hydeout/tags#swift">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">Swift</span>
+    </a>
+  
+    
+    <a href="/hydeout/tags#开源框架">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">开源框架</span>
+    </a>
+  
+    
+    <a href="/hydeout/tags#promisekit">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">PromiseKit</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+  <section class="comments">
+    <h2>Comments</h2>
+    
+  <div id="disqus_thread">
+    <button class="disqus-load" onClick="loadDisqusComments()">
+      Load Comments
+    </button>
+  </div>
+  <script>
+
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW
+  *  TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:s
+  *  https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  var disqus_config = function () {
+    this.page.url = "http://localhost:4000/hydeout/2020/01/13/promisekit-startup.html";
+    this.page.identifier = "" ||
+                           "http://localhost:4000/hydeout/2020/01/13/promisekit-startup.html";
+  }
+  function loadDisqusComments() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//hydeout.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus</a>.
+  </noscript>
+
+
+
+  </section>
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/hydeout/2020/03/01/block.html">
+            Blocks
+            <small>01 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/hydeout/2020/01/17/flutter-widget.html">
+            Widget 知识点
+            <small>17 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/hydeout/2020/01/14/ios-map.html">
+            iOS 开发舆图
+            <small>14 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>

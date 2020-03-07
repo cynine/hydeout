@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="https://gmpg.org/xfn/11" rel="profile" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <title>
+    
+      🚀 Swift 项目中的开源库 &middot; Cynine
+    
+  </title>
+
+  
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/hydeout/assets/css/main.css" />
+  
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/hydeout/favicon.png" />
+<link rel="shortcut icon" href="/hydeout/favicon.ico" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/hydeout/feed.xml" />
+
+  <!-- Additional head bits without overriding original head -->
+</head>
+
+
+  <body class="post">
+
+    <div id="sidebar">
+  <header>
+    <div class="site-title">
+      <a href="/hydeout/">
+        
+          <span class="back-arrow icon"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0h24v24H0z" fill="none"/>
+  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+</svg></span>
+        
+        Cynine
+      </a>
+    </div>
+    <p class="lead">Everything I do now, is in pursuit of more perfect.</p>
+  </header>
+  <nav id="sidebar-nav-links">
+  
+    <a class="home-link "
+        href="/hydeout/">Home</a>
+  
+  
+
+  
+
+  
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="page-link "
+          href="/hydeout/about">About</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+
+  
+
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/hydeout/category/Developer">开发笔记</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/hydeout/category/Flutter">Flutter</a>
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/hydeout/category/Python">Python</a>
+    
+  
+
+  
+    
+  
+
+  
+    
+      <a class="category-link "
+          href="/hydeout/category/iOS">iOS</a>
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+
+  <!-- Optional additional links to insert in sidebar nav -->
+</nav>
+
+
+  
+
+  <nav id="sidebar-icon-links">
+  
+    <a id="github-link"
+       class="icon" title="Github Project" aria-label="Github Project"
+       href="https://github.com/Cynine/hydeout">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28" height="24" width="28"><path d="M12 2c6.625 0 12 5.375 12 12 0 5.297-3.437 9.797-8.203 11.391-0.609 0.109-0.828-0.266-0.828-0.578 0-0.391 0.016-1.687 0.016-3.297 0-1.125-0.375-1.844-0.812-2.219 2.672-0.297 5.484-1.313 5.484-5.922 0-1.313-0.469-2.375-1.234-3.219 0.125-0.313 0.531-1.531-0.125-3.187-1-0.313-3.297 1.234-3.297 1.234-0.953-0.266-1.984-0.406-3-0.406s-2.047 0.141-3 0.406c0 0-2.297-1.547-3.297-1.234-0.656 1.656-0.25 2.875-0.125 3.187-0.766 0.844-1.234 1.906-1.234 3.219 0 4.594 2.797 5.625 5.469 5.922-0.344 0.313-0.656 0.844-0.766 1.609-0.688 0.313-2.438 0.844-3.484-1-0.656-1.141-1.844-1.234-1.844-1.234-1.172-0.016-0.078 0.734-0.078 0.734 0.781 0.359 1.328 1.75 1.328 1.75 0.703 2.141 4.047 1.422 4.047 1.422 0 1 0.016 1.937 0.016 2.234 0 0.313-0.219 0.688-0.828 0.578-4.766-1.594-8.203-6.094-8.203-11.391 0-6.625 5.375-12 12-12zM4.547 19.234c0.031-0.063-0.016-0.141-0.109-0.187-0.094-0.031-0.172-0.016-0.203 0.031-0.031 0.063 0.016 0.141 0.109 0.187 0.078 0.047 0.172 0.031 0.203-0.031zM5.031 19.766c0.063-0.047 0.047-0.156-0.031-0.25-0.078-0.078-0.187-0.109-0.25-0.047-0.063 0.047-0.047 0.156 0.031 0.25 0.078 0.078 0.187 0.109 0.25 0.047zM5.5 20.469c0.078-0.063 0.078-0.187 0-0.297-0.063-0.109-0.187-0.156-0.266-0.094-0.078 0.047-0.078 0.172 0 0.281s0.203 0.156 0.266 0.109zM6.156 21.125c0.063-0.063 0.031-0.203-0.063-0.297-0.109-0.109-0.25-0.125-0.313-0.047-0.078 0.063-0.047 0.203 0.063 0.297 0.109 0.109 0.25 0.125 0.313 0.047zM7.047 21.516c0.031-0.094-0.063-0.203-0.203-0.25-0.125-0.031-0.266 0.016-0.297 0.109s0.063 0.203 0.203 0.234c0.125 0.047 0.266 0 0.297-0.094zM8.031 21.594c0-0.109-0.125-0.187-0.266-0.172-0.141 0-0.25 0.078-0.25 0.172 0 0.109 0.109 0.187 0.266 0.172 0.141 0 0.25-0.078 0.25-0.172zM8.937 21.438c-0.016-0.094-0.141-0.156-0.281-0.141-0.141 0.031-0.234 0.125-0.219 0.234 0.016 0.094 0.141 0.156 0.281 0.125s0.234-0.125 0.219-0.219z"></path>
+</svg>
+
+    </a>
+    <a id="github-download-link"
+       class="icon" title="Download" aria-label="Download"
+       href="https://github.com/Cynine/hydeout/archive/v4.0.2.zip">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <a id="subscribe-link"
+     class="icon" title="Subscribe" aria-label="Subscribe"
+     href="/hydeout/feed.xml">
+    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <circle cx="6.18" cy="17.82" r="2.18"/>
+    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+</svg>
+  </a>
+
+  
+  
+  
+  
+
+  
+    <a id="tags-link"
+       class="icon"
+       title="Tags" aria-label="Tags"
+       href="/hydeout/tags">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+    </a>
+  
+
+  
+    <a id="search-link"
+       class="icon"
+       title="Search" aria-label="Search"
+       href="/hydeout/search">
+      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+    </a>
+  
+
+  <!-- Optional additional links to insert for icons links -->
+</nav>
+
+  <p>
+  &copy; 2020.
+  <a href="/hydeout/LICENSE.md">MIT License.</a>
+</p>
+
+</div>
+
+    <main class="container">
+      <header>
+  <h1 class="post-title">🚀 Swift 项目中的开源库</h1>
+</header>
+<div class="content">
+  <div class="post-meta">
+  <span class="post-date">13 Jan 2020</span>
+  <span class="post-categories">
+    
+      &bull;
+
+      
+      
+      
+
+      
+        <a href="/hydeout/category/iOS">
+          iOS
+        </a>
+      
+    
+  </span>
+</div>
+
+
+  <div class="post-body">
+    <blockquote>
+  <p>本文出处: <a href="https://github.com/SwiftOldDriver/SwiftMarch">SwiftOldDriver/SwiftMarch</a>
+并在这个基础上进行扩充。</p>
+</blockquote>
+
+<h1 id="swiftmarch"><strong>SwiftMarch</strong></h1>
+
+<p>Swift 发展趋势喜人，Github 上已经有很多相关的开源项目，也有一些人进行了收集。然而我们如何判断某个开源库能否安心的在项目中使用呢？毕竟不是谁都有时间或者能力读完全部的源码，有些库即使读了源码也无法立刻得出是是否可以大规模的应用。</p>
+
+<p>因此，我们决定作出一点努力。我们会筛选出<strong>广泛应用于实际 Swift 项目</strong>的开源库，并且从一线开发者中搜集相关的评价。如果你打算开始一个 Swift 项目，希望这里面的信息对你有帮助。</p>
+
+<p>如果你觉得某个开源库很棒而我们遗漏了可以开 PR 给我们，或者对我们公布的某些库有独到的评价可以通过 PR 告诉我们，我们会尽快处理。</p>
+
+<h1 id="目录"><strong>目录</strong></h1>
+
+<h2 id="网络"><strong>网络</strong></h2>
+
+<h3 id="alamofire"><strong><a href="https://github.com/Alamofire/Alamofire">Alamofire</a></strong></h3>
+
+<p>Swift 中使用最广泛的网络库。由大神 matt 负责，值得信赖。可以看介绍：<a href="https://github.com/ipader/SwiftGuide/wiki/%E5%85%A8%E8%BA%AB%E5%BF%83%E6%8B%A5%E6%8A%B1%E5%BC%80%E6%BA%90%E7%9A%84%E5%BC%80%E5%8F%91%E8%80%85-Mattt-Thompson">全身心拥抱开源的开发者 Mattt Thompson</a>。需要提醒的是 4.1.0 的版本支持 iOS 8 ， 4.0 的版本只支持 iOS 9 。</p>
+
+<h3 id="moya"><a href="https://github.com/Moya/Moya"><strong>Moya</strong></a></h3>
+
+<p>Swift 编写的网络抽象性层框架。Moya 的基本思想是，提供一些网络抽象层，它们经过充分地封装，并直接调用 Alamofire。</p>
+
+<h3 id="promisekit"><a href="https://github.com/mxcl/PromiseKit">PromiseKit</a></h3>
+
+<p>PromiseKit is a thoughtful and complete implementation of promises for any platform that has a swiftc</p>
+
+<h3 id="tiercel"><a href="https://github.com/Danie1s/Tiercel">Tiercel</a></h3>
+
+<p>纯 Swift 的下载框架，文档清晰，代码整洁。支持多任务并发、大文件下载和断点续传等特点，满足下载的大部分需求。</p>
+
+<h2 id="json-解析"><strong>JSON 解析</strong></h2>
+
+<h3 id="swiftyjson"><strong><a href="https://github.com/SwiftyJSON/SwiftyJSON">SwiftyJSON</a></strong></h3>
+
+<p>SwiftyJSON 应该算是最老牌的 JSON 解析库之一，安全快捷又不啰嗦。知道的人多，用的人多，星星也多。对于嵌套复杂的 JSON 数据依然能够如字典取值般简单；灵活地与 <code class="highlighter-rouge">if let</code> 配合使用，更不用担心取到了错误的数据。</p>
+
+<h3 id="objectmapper"><strong><a href="https://github.com/Hearst-DD/ObjectMapper">ObjectMapper</a></strong></h3>
+
+<p>JSON 解析是 iOS 开发中再常见不过的了，也许你只听过上面星星很多的 SwiftyJSON，但是我相信你用过 ObjectMapper 后一定会喜欢上它的。首先 ObjectMapper 使用起来非常简洁，配合 <a href="https://github.com/Ahmed-Ali/JSONExport">JSON Export</a> 使用，你完全不需要在嵌套的 JSON 数据里摸不着北，它还支持结构体和自定义转换。同时，ObjectMapper 还遵守面向协议编程的范式，你的 Model 只需要实现 Mappable 协议就可以了，这会让你的代码更 Swifty。如果你想让你的 Model 看起来既优雅又清爽，那么我建议你一定要试一试这个库。</p>
+
+<p>这是 ObjectMapper 的<a href="https://github.com/lacklock/ObjectMapper-CN-Guide">中文文档翻译</a>。</p>
+
+<h2 id="存储"><strong>存储</strong></h2>
+
+<h3 id="yycache"><strong><a href="https://github.com/ibireme/YYCache">YYCache</a></strong></h3>
+
+<p>轻量级缓存的最可靠选择。不得不承认的一个事实是目前没有一个用 Swift 编写的优秀缓存库。最流行的 Haneke 作者在 2.3 版本后已经放弃维护，当然本身 Haneke 的实现也不算优秀。虽然 OC 中的基本数据对象在 Swift 中使用需要经过类型转换，但是经过实际测试这部分性能损失在日常业务处理中并没有多大的影响，属于可以接受的范围。</p>
+
+<p>具体设计介绍参考作者写的：<a href="http://blog.ibireme.com/2015/10/26/yycache/">YYCache 设计思路与技术细节</a>。</p>
+
+<h3 id="realm"><strong><a href="https://realm.io/cn">Realm</a></strong></h3>
+
+<p>Realm 是由硅谷创业公司发布的一款可以用于 iOS 和 Android 的跨平台移动数据库。支持的平台包括 Java，Objective-C，Swift，React Native，Xamarin。是第一个专门针对移动平台的数据库，立志取代 SQLite 、CoreData。核心数据引擎由 C++ 开发，有着优异的性能。简单易用可以快速上手，在数据存储时再也不用思考烦人的底层技术细节。</p>
+
+<p>基于技术选型的限制，目前 Realm 使用中也有一些明显的不便：</p>
+
+<ul>
+  <li>
+    <p>Realm 没有自动增长属性</p>
+
+    <p>Realm 没有线程/进程安全的自动增长属性机制，这在其他数据库中常常用来产生主键</p>
+  </li>
+  <li>所有的数据模型必须直接继承自 RealmObject 。这阻碍我们利用数据模型中的任意类型的继承。以下是不能完成的：
+    <ul>
+      <li>多态类之间的转换（例如子类转换成子类，子类转换成父类，父类转换成子类等）</li>
+      <li>同时对多个类进行检索</li>
+      <li>多类容器 (RLMArray 以及 RLMResults)</li>
+    </ul>
+  </li>
+  <li>NSData 以及 NSString 属性不能保存超过 16 MB 大小的数据</li>
+  <li>
+    <p>不能自定义 getter、setter</p>
+
+    <p>realm会自动生成 getter、setter ，如果自定义 getter 、setter 存储就会有影响。如果要规避这个问题，可以通过设置这个对象的忽略属性。</p>
+  </li>
+  <li>
+    <p>查询的结果不是数组</p>
+
+    <p>为了能够支持查询结果的链式查询，realm 自定义了一个集合类型。可以枚举，但是不是熟悉的数组了。又因为realm的懒加载机制，所以不建议在数据层把这个枚举转成数组类型。这样的缺点就是上层知道了数据的存储逻辑。严格的说这里不应该让上层知道。但是这样设计也许是为了方便上层进行再次检索，realm有着优越的查询性能。</p>
+  </li>
+  <li>尽管 Realm 文件可以被多个线程同时访问，但是您不能跨线程处理 Realms、Realm 对象、查询和查询结果</li>
+  <li>Realm不能支持原生的集合类型，比如：NSArray 、NSDictionary 、NSSet 等。需要使用 Realm 里面提供的集合类型 RLMArray(OC)，List(Swift)</li>
+</ul>
+
+<p>关于 Realm 的基本情况介绍，可以看这篇文章：<a href="http://www.jianshu.com/p/2b4388cf2a2d">移动端数据库新王者：realm</a>。</p>
+
+<p><strong>关于 Realm 的详细使用</strong>，可以查看<a href="https://realm.io/docs/swift/latest/">官方文档</a>。</p>
+
+<p>更多的具体分析，请前往<a href="http://www.jianshu.com/p/50e0efb66bdf">Realm数据库 从入门到“放弃”</a>。</p>
+
+<h2 id="图片存储"><strong>图片存储</strong></h2>
+
+<h3 id="kingfisher"><strong><a href="https://github.com/onevcat/Kingfisher">Kingfisher</a></strong></h3>
+
+<p>Kingfisher 是 Swift 中使用比较广泛的图片存储库。由喵神 onevcat 开源及维护。 Kingfisher 轻量级，纯 Swift 编写，目的是为了解决从网络上下载图片和缓存图片的问题。Kingfisher 的灵感主要来源于 SDWebImage，采用的存储机制和 SDWebImage一样，所以性能上没有太大区别，然而却有着更加灵活友好的 API。</p>
+
+<p>目前支持 iOS 8.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+，Swift 3 (Kingfisher 3.x), Swift 2.3 (Kingfisher 2.x)。</p>
+
+<p>关于 Kingfisher 的使用，详细请看这篇<a href="https://github.com/onevcat/Kingfisher/wiki">文档</a>。</p>
+
+<h2 id="布局"><strong>布局</strong></h2>
+
+<h3 id="snapkit"><strong><a href="https://github.com/SnapKit/SnapKit">SnapKit</a></strong></h3>
+
+<p>如果你使用 Autolayout 布局，Snapkit 就是最好的第三方库。完整的提供了底层的能力。创造性的引入链式编程，让使用起来非常的方便。</p>
+
+<h2 id="ui"><strong>UI</strong></h2>
+
+<h3 id="reusable"><strong><a href="https://github.com/AliSoftware/Reusable">Reusable</a></strong></h3>
+
+<p>UITableView 必备。更加优雅的实现 Cell 的 Register 和 Reuse 。使用参考：<a href="http://www.jianshu.com/p/255e02337176">Reusable-让你放肆的dequeueReusableCell</a>。</p>
+
+<h3 id="dznemptydataset"><a href="https://github.com/dzenbot/DZNEmptyDataSet">DZNEmptyDataSet</a></h3>
+
+<p>DZNEmptyDataSet 是基于 UITableView／UICollectionView 的范畴/扩展（category）类，它可以在空白页面上显示提示信息。</p>
+
+<h2 id="util"><strong>Util</strong></h2>
+
+<h3 id="swiftdate"><strong><a href="https://github.com/malcommac/SwiftDate">SwiftDate</a></strong></h3>
+
+<p>非常好用的帮助处理 Date 相关的库。灵活运用了 swift 的重载操作符、扩展等特性，使得时间可以直观的进行算术运算：比较大小，直接加减等。常见的时间也字符串的转换也做了良好的支持。</p>
+
+<h3 id="monkeyking"><strong><a href="https://github.com/nixzhu/MonkeyKing">MonkeyKing</a></strong></h3>
+
+<p>MonkeyKing 帮助开发者快速集成国内主流社交应用(微信、微博、QQ、支付宝)的分享、授权、支付等功能。重要的是，不需要集成各种官方 SDK。目前由 4 名程序员维护。可用于生产环境、轻量级，能满足绝大部分的分享、授权、支付等需求。</p>
+
+<h3 id="ezswiftextensions"><strong><a href="https://github.com/goktugyil/EZSwiftExtensions">EZSwiftExtensions</a></strong></h3>
+
+<p>提供了一系列对于 Swift 标准库、方法与 UIKit 的扩展，让你更加简单舒服地编写代码。</p>
+
+<h3 id="rswift"><strong><a href="https://github.com/mac-cain13/R.swift">R.swift</a></strong></h3>
+
+<p>配置稍微有一点复杂，然而付出的努力对于项目而言是值得的。R.swfit 会根据项目文件在编译期生成各种资源文件的枚举，比如 nib 、UIImage 等。大幅度减少了使用资源文件时输入字符串的这种痛苦。有一个缺点就是这个库只适合使用在纯 Swift 项目中。可以参考：<a href="http://www.jianshu.com/p/b453b78c7126">R.swift:以一种优雅安全的方式使用资源文件</a>。</p>
+
+<h3 id="swiftyattributes"><strong><a href="https://github.com/eddiekaiger/SwiftyAttributes">SwiftyAttributes</a></strong></h3>
+
+<p>先进的 API ，操作 attributed 字符串的利器。</p>
+
+<h3 id="nsobject_rx"><a href="https://github.com/RxSwiftCommunity/NSObject-Rx">NSObject_Rx</a></h3>
+
+<p>Handy RxSwift extensions on NSObject, including rx.disposeBag.</p>
+
+<h3 id="then"><a href="https://github.com/devxoul/Then">Then</a></h3>
+
+<p>✨ Super sweet syntactic sugar for Swift initializers</p>
+
+<h3 id="fspagerview">🐎 <a href="https://github.com/WenchaoD/FSPagerView">FSPagerView</a></h3>
+
+<p><a href="https://github.com/GesanTung">@老峰</a>：FSPagerView 是一个 Swift 实现的优雅轮播图库，它可以在制作横幅视图、产品展示、欢迎 / 指南页面、屏幕 / 视图控制器滑块等为我们带来很大的便利。</p>
+
+<h2 id="动画">动画</h2>
+
+<h3 id="lottie-ios"><a href="https://github.com/airbnb/lottie-ios">lottie-ios</a></h3>
+
+<p>An iOS library to natively render After Effects vector animations <a href="http://airbnb.io/lottie/">http://airbnb.io/lottie/</a></p>
+
+<h3 id="hero"><a href="https://github.com/HeroTransitions/Hero">Hero</a></h3>
+
+<p>iOS &amp; tvOS 优雅的过渡动画库</p>
+
+<h2 id="加密"><strong>加密</strong></h2>
+
+<h3 id="cryptoswift"><strong><a href="https://github.com/krzyzanowskim/CryptoSwift">CryptoSwift</a></strong></h3>
+
+<p>非常流行的加密解密库，项目配有完善的单元测试，可以放心使用。</p>
+
+<h3 id="keychainaccess"><strong><a href="https://github.com/kishikawakatsumi/KeychainAccess">KeychainAccess</a></strong></h3>
+
+<p>轻量级 Keychain 封装,简单到极致的接口。支持 TouchID 与 Keychain 整合，详细、优雅、简明的 README。Objective-C 版本在<a href="https://github.com/soffes/SAMKeychain">这里</a></p>
+
+<h2 id="debug"><strong>Debug</strong></h2>
+
+<h3 id="xcglogger"><strong><a href="https://github.com/DaveWoodCom/XCGLogger">XCGLogger</a></strong></h3>
+
+<p>由于 Swift 本身不包含 C 的预编译器，导致开发者不能使用在 OC 中定义过的宏定义进行调试打印。简单的打印调用栈的信息，又会漏掉很多有用信息。想要解决这个问题又需要加入更多的代码。基于这个目的， XCGLogger 给纯的 Swift 项目带来了解决方案。 XCGLogger 允许你在控制台记录任何细节，使用起来极其简单，和使用 nslog() 或 print() 一样方便。 XCGLogger 可以打印任何信息，甚至可以打印日期、函数名、文件名和行号等等。</p>
+
+<h3 id="cocoalumberjack"><strong><a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a></strong></h3>
+
+<p>OC 时代最好用的记录日志的开源库。现在同时有 OC 版和 swift 版本提供。</p>
+
+<h2 id="自动化"><strong>自动化</strong></h2>
+
+<h3 id="fastlane"><strong><a href="https://github.com/fastlane/fastlane">Fastlane</a></strong></h3>
+
+<p>iOS 中最好用的自动化工具。提供了获取证书、运行自动化测试、上传至 TestFlight 和 AppStore 等功能。配置简单，社区强大，具体的功能可以到这个网站查看：<a href="https://fastlane.tools/">fastlane.tools</a>。</p>
+
+<h2 id="functional-reactive-programming"><strong>Functional Reactive Programming</strong></h2>
+
+<p>使用响应式编程框架统一对委托、回调 blocks 、通知 、控件的事件 、KVO 等异步事件的逻辑处理。可以显著的降低代码复杂度，更有效的传达代码意图。任何一个优秀的 iOS 程序员都不会拒绝响应式编程，唯一的缺点可能就是对智商有要求了。</p>
+
+<p>RAC 和 Rx 都有着广泛的使用用户。个人拙见两个库的选择全靠个人偏好，在编程范式上没有区别。</p>
+
+<h3 id="reactivecocoa"><strong><a href="https://github.com/ReactiveCocoa/ReactiveCocoa">ReactiveCocoa</a></strong></h3>
+
+<p>OC 时代最流行的响应式框架。由 github 团队开源。如果项目是从 OC 迁移到 swift 的，继续使用 RAC 是一个非常自然的选择。因此 RAC 有着广泛的社区支持。从 5.0 开始主要框架逻辑已经全由 swift 实现。与 RxSwift 编程模型最大的区别是冷热信号由两种类型表示。</p>
+
+<h3 id="rxswift"><strong><a href="https://github.com/ReactiveX/RxSwift">RxSwift</a></strong></h3>
+
+<p>函数响应式编程 (Funtional Reactive Programming) 系列 ReactiveX 的 Swift 版本开源框架。推出时间较晚，其思路与 ReactiveCocoa 相近，它们的共同祖先是微软的 ReactiveExtensions，本质核心就是面向数据流编程。</p>
+
+<h2 id="代码分析"><strong>代码分析</strong></h2>
+
+<p>###<a href="https://github.com/realm/SwiftLint">SwiftLint</a> Realm 出品的 Swift 代码规范检测工具。深度嵌入 Clang 和 SourceKit，可以监测整个项目的代码风格。如果有不符合规范之处，SwiftLint会报出相应警告⚠️。当然为了方便和特殊情况，也可在相应代码处手动关闭警告，或是在整个项目中关闭警告，十分灵活。</p>
+
+<p>代码规范请参考：<a href="https://github.com/Artwalk/swift-style-guide/blob/master/README_CN.md">Swift Style Guide</a></p>
+
+<h3 id="logan"><a href="https://github.com/Meituan-Dianping/Logan">Logan</a></h3>
+
+<p>对于一个 App 来讲，日志的收集、上报、查询是非常重要的。而目前在各个公司中，对日志的处理大多并没有形成一套完整的体系，都是针对不同的日志类型，如crash、性能、打点等等进行单独的处理。近日，美团点评开源了移动端基础日志库 Logan ，Logan 是一个功能完善、无侵入的日志框架，解决了很多移动端日志方面的痛点，并且拥有较好的性能，可以很方便的接入。</p>
+
+<h2 id="工具">工具</h2>
+
+<h3 id="merchantkit"><a href="https://github.com/benjaminmayo/merchantkit">MerchantKit</a></h3>
+
+<p>现代 iOS 内购管理框架，极大地简化了独立开发者的工作，可以追踪被购买的项目、检索购买、管理订阅到期日期、恢复购买、验证购买等等。MerchantKit 为具有一系列内购项目的 app 而设计，是为应用增加 pro 版本的绝佳方式，不论是一次性购买还是采取订阅方式。</p>
+
+<h1 id="thanks"><strong>Thanks</strong></h1>
+
+<p><a href="https://github.com/vsouza/awesome-ios">awesome-ios</a></p>
+
+    
+
+
+
+<div class="post-tags">
+  
+    
+    <a href="/hydeout/tags#ios">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">iOS</span>
+    </a>
+  
+    
+    <a href="/hydeout/tags#swift">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">Swift</span>
+    </a>
+  
+    
+    <a href="/hydeout/tags#开源框架">
+    
+      <span class="icon">
+        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+</svg>
+      </span>&nbsp;<span class="tag-name">开源框架</span>
+    </a>
+  
+</div>
+  </div>
+
+  
+  <section class="comments">
+    <h2>Comments</h2>
+    
+  <div id="disqus_thread">
+    <button class="disqus-load" onClick="loadDisqusComments()">
+      Load Comments
+    </button>
+  </div>
+  <script>
+
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW
+  *  TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:s
+  *  https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  var disqus_config = function () {
+    this.page.url = "http://localhost:4000/hydeout/2020/01/13/swift-project-open-libs.html";
+    this.page.identifier = "" ||
+                           "http://localhost:4000/hydeout/2020/01/13/swift-project-open-libs.html";
+  }
+  function loadDisqusComments() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//hydeout.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus</a>.
+  </noscript>
+
+
+
+  </section>
+
+  <section class="related">
+  <h2>Related Posts</h2>
+  <ul class="posts-list">
+    
+      <li>
+        <h3>
+          <a href="/hydeout/2020/03/01/block.html">
+            Blocks
+            <small>01 Mar 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/hydeout/2020/01/17/flutter-widget.html">
+            Widget 知识点
+            <small>17 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/hydeout/2020/01/14/ios-map.html">
+            iOS 开发舆图
+            <small>14 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</section>
+
+</div>
+
+    </main>
+
+    <!-- Optional footer content -->
+
+  </body>
+</html>
