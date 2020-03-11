@@ -28,7 +28,7 @@ App 的启动时间，指的是从用户点击 App 开始，到用户看到第�
 
 整个启动过程如下：
 
-![img](assets/images/8af7e23cd98c8add88e2f8ed3405ed81.png)
+![img](https://static001.geekbang.org/resource/image/8a/81/8af7e23cd98c8add88e2f8ed3405ed81.png)
 
 ### main() 函数执行前
 
@@ -72,7 +72,7 @@ main() 函数执行后的阶段，指的是从 main() 函数执行开始，到 a
 
 优化的思路是： main() 函数开始执行后到首屏渲染完成前只处理首屏相关的业务，其他非首屏业务的初始化、监听注册、配置文件读取等都放到首屏渲染完成后去做。如下图所示：
 
-![f30f438d447e81132dd520e657427419](assets/images/f30f438d447e81132dd520e657427419.png)
+![img](https://static001.geekbang.org/resource/image/f3/19/f30f438d447e81132dd520e657427419.png)
 
 ### 方法级别的启动优化
 
@@ -104,7 +104,7 @@ objc_msgSend 方法执行的逻辑是：先获取对象对应类的信息，再�
 
 Facebook 开源了一个库，可以在 iOS 上运行的 Mach-O 二进制文件中动态地重新绑定符号，这个库叫 fishhook。查看[fishhook 的代码](https://github.com/facebook/fishhook)。
 
-单靠 fishhook 还不能搞定 objc_msgSend 的 hook ，还需在汇编层面加一些改造，耗时检查的完整代码 [[GCDFetchFeed](https://github.com/ming1016/GCDFetchFeed)](https://github.com/ming1016/GCDFetchFeed)
+单靠 fishhook 还不能搞定 objc_msgSend 的 hook ，还需在汇编层面加一些改造，耗时检查工具的完整代码 [GCDFetchFeed](https://github.com/ming1016/GCDFetchFeed)
 
 ## 小结
 
